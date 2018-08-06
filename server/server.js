@@ -48,7 +48,7 @@ app.get('/auth/callback', async (req, res) => {
 
   if (foundUser[0]) {
       req.session.user = foundUser[0];
-      res.redirect('/#shoppingcart');
+      res.redirect('/#/');
   } else {
     let createdUser = await db.create_user([name, email, sub, picture]);
     req.session.user = createdUser[0];
@@ -56,6 +56,13 @@ app.get('/auth/callback', async (req, res) => {
   };
 });
 
+app.get('api.user-data', (req, res) => {
+ if(req.session.user) {
+    res.status(200).send(req.session.user);
+ } else {
+     res.status(401).send('Nice try sucka!');
+ };
+});
 
 app.get('/api/logout', (req, res) => {
  req.session.destroy();
