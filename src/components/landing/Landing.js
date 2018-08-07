@@ -1,9 +1,16 @@
 import React from 'react';
 
+/**
+ * Style imports
+ */
+import { Wrapper, Header, Logo } from './styles';
+
 const Landing = () => (
-     <div>
-      This is the landing page
-     </div>
+     <Wrapper>
+      <Header>
+        <Logo>#AvaocadoToastLife</Logo>
+      </Header>
+     </Wrapper>
    );
 
 export default Landing;
