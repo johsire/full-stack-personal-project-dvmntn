@@ -30,4 +30,6 @@ export const Menu = styled.li`
   font-family: 'Nunito';
   font-weight: 700;
   letter-spacing: 1.5px;
+  text-decoration: none;
+  color: red;
 `;

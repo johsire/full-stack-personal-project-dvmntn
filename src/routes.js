@@ -9,9 +9,9 @@ import Account from './components/account/Account';
 
 export default (
   <Switch>
-    <Route component={ Landing } exact path="/" />
-    <Route component={ Product } path='/pricing' />
-    <Route component={ Order } path='/subscription' />
-    <Route component={ Account } path='/login' />
+    <Route exact path='/' component={ Landing } />
+    <Route path='/pricing' component={ Product } />
+    <Route path='/subscription' component={ Order } />
+    <Route path='/login' component={ Account } />
   </Switch>
 );

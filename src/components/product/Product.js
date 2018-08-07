@@ -14,6 +14,7 @@ import {  } from './styles';
 const Product = () => (
   <div>
     <Header />
+    This is the product/ pricing page
      
   </div>
    );
