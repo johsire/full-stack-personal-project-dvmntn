@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
 
-class Account extends Component {
- render() {
-   return (
+import React from 'react';
+
+const Account = () => (
      <div>
       This is the Account page
      </div>
    );
- }
-}
 
 export default Account;
