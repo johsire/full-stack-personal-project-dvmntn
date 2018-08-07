@@ -10,9 +10,13 @@ const Header = () => (
    <Logo>#AvaocadoToastLife</Logo>
    <Navigation>
      <Menu>Home</Menu>
-     <Menu>About</Menu>
+     {/* home is landing */}
+     <Menu>Pricing</Menu>
+     {/* pricing is product */}
      <Menu>Subscribe</Menu>
+     {/* subscribe is order */}
      <Menu>Login</Menu>
+     {/* login is account */}
    </Navigation>
  </HeaderWrapper>
 );

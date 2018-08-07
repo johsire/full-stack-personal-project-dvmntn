@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LandingContainer from './containers/landing';
 
 const App = () => (
