@@ -1,9 +1,9 @@
-let allOrders = {};
+const express = require('express');
 
 module.exports = {
  createOrder: (req, res) => {
   const db = req.app.get('db');
-  cont { user_id, product_id } = req.body;
+  const { user_id, product_id } = req.body;
 
   db.create_order({ user_id, product_id })
     .then(data => {
