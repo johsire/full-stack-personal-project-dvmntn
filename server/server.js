@@ -75,6 +75,12 @@ app.post('/api/order', orderCtrl.createOrder);
 // Delete order
 // Edit user
 // Delete user
+// Create address
+app.post("/api/address/", controller.createAddress);
+// get address
+app.get("/api/address", controller.getAddress);
+
+
 
 app.listen(SERVER_PORT, () => {
  console.log(`W.Ferrell Crashing Weddings on Port: ${SERVER_PORT}`);
