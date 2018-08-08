@@ -5,7 +5,7 @@ module.exports = {
   const db = req.app.get('db');
   const { user_id, product_id } = req.body;
 
-  db.create_order({ user_id, product_id })
+  db.order.create_order({ user_id, product_id })
     .then(data => {
      res.status(200).json({
       order: data,

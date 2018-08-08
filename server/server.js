@@ -72,6 +72,8 @@ app.get('/api/logout', (req, res) => {
 // Add products to database
 // Create order
 app.post('/api/order', orderCtrl.createOrder);
+// Get order:
+
 // Delete order
 // Edit user
 // Delete user
