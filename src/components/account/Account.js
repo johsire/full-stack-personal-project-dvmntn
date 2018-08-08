@@ -11,10 +11,10 @@ import Header from '../header';
 
 import { Wrapper } from './styles';
 
-const Account = () => (
+const Account = ({ title }) => (
   <Wrapper>
     <Header />
-      This is the Account page
+      {title}
   </Wrapper>
       
     

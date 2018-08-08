@@ -9,31 +9,13 @@ import Header from '../header';
  * Style imports
  */
 
-import { Wrapper, PriceBanner, ItemContainer, Title, Description, Price, GalleryBanner, ImageOne, ImageTwo, ImageThree } from './styles';
+import { Wrapper, PriceContainer, ItemContainer, Title, Description, Price } from './styles';
 
-const products = [
-  {
-    title: 'Daily',
-    description: 'Delivered fresh everyday',
-    price: '$39.99'
-  },
-  {
-    title: '3x per wk',
-    description: 'Delivered 3 times each week',
-    price: '$19.99'
-  },
-  {
-    title: 'Once per wk',
-    description: 'Delivered once each week',
-    price: '$9.99'
-  }
-]
-
-const Product = () => {
+const Product = ({ products }) => {
   return (
   <Wrapper>
     <Header />
-    <PriceBanner>
+    <PriceContainer>
     {products.map((product) => {
         return (
           <ItemContainer>
@@ -44,22 +26,7 @@ const Product = () => {
         )
       })
     }
-    </PriceBanner>
-
-    <GalleryBanner>
-      <ImageOne>
-
-      </ImageOne>
-      <ImageTwo>
-
-      </ImageTwo>
-      <ImageThree>
-
-      </ImageThree>
-      {/* <ImageFour>
-
-      </ImageFour> */}
-    </GalleryBanner>
+    </PriceContainer>
   </Wrapper>
   )};
 

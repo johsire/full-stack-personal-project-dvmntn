@@ -11,13 +11,12 @@ export const Wrapper = styled.div`
 
 `;
 
-export const PriceBanner = styled.div`
- width: 600px;;
- height: 240px;%;
- margin: 25px auto;
+export const PriceContainer = styled.div`
+ width: 600px;
+ height: 240px;
+ margin: 50px auto 25px;
  display: flex;
  justify-content: space-between;
- ${'' /* background-color: white; */}
  align-items: center;
 `;
 

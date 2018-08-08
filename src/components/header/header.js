@@ -6,6 +6,16 @@ import { Link } from 'react-router-dom';
  */
 import { HeaderWrapper, Logo, Navigation, Menu } from './styles';
 
+let isLoggedIn = false;
+const authenticateAuth0 = () => {
+  // logic goes here
+  console.log(isLoggedIn, 'LOGGED IN STATUS');
+  console.log('tset');
+  isLoggedIn = true;
+  console.log(isLoggedIn, 'LOGGED IN STATUS');
+}
+
+
 const Header = () => (
   <HeaderWrapper>
    <Link to="/">
@@ -18,9 +28,12 @@ const Header = () => (
     <Link to="/order">
       <Menu>Order</Menu>
     </Link>
-    <Link to="/account">
-      <Menu>Account</Menu>
+    {isLoggedIn && (
+      <Link to="/account">
+        <Menu>Account</Menu>
     </Link>
+    )}
+    {!isLoggedIn && <Menu onClick={() => authenticateAuth0()}>Login</Menu>}
    </Navigation>
  </HeaderWrapper>
 );

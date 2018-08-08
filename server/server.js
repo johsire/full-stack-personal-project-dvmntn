@@ -69,6 +69,11 @@ app.get('/api/logout', (req, res) => {
  res.redirect('http://localhost:3000');
 });
 
+// Add products to database
+// Create order
+// Delete order
+// Edit user
+// Delete user
 
 app.listen(SERVER_PORT, () => {
  console.log(`W.Ferrell Crashing Weddings on Port: ${SERVER_PORT}`);

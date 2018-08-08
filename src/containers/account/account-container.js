@@ -4,7 +4,7 @@ import Account from '../../components/account';
 class AccountContainer extends Component {
  render() {
    return (
-    <Account />
+    <Account title={"This is the Account page"} />
    );
  }
 }

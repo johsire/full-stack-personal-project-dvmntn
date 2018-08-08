@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Landing from './components/landing/Landing';
-import Product from './components/product/Product';
-import Order from './components/order/Order';
-import Account from './components/account/Account';
+import Landing from './containers/landing';
+import Product from './containers/product';
+import Order from './containers/order';
+import Account from './containers/account';
 
 
 export default (
