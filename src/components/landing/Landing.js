@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Component Imports
@@ -16,7 +17,9 @@ const Landing = () => (
       <Header />
       <HeroSection>
         <Title>Subscribe with us Friends, Family, Officemates</Title>
-        <MiniTitle>Order Today</MiniTitle>
+        <Link to="/order">
+          <MiniTitle>Order Today</MiniTitle>
+        </Link>
       </HeroSection>
      </Wrapper>
    );

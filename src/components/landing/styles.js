@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 export const HeroSection = styled.div`
  width: 70%;
  margin: 20px auto;
+ max-width: 640px;
 `;
 
 export const Title = styled.h2`

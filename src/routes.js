@@ -10,8 +10,8 @@ import Account from './components/account/Account';
 export default (
   <Switch>
     <Route exact path='/' component={ Landing } />
-    <Route path='/pricing' component={ Product } />
-    <Route path='/subscription' component={ Order } />
-    <Route path='/login' component={ Account } />
+    <Route path='/products' component={ Product } />
+    <Route path='/order' component={ Order } />
+    <Route path='/account' component={ Account } />
   </Switch>
 );

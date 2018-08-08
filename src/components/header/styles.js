@@ -14,7 +14,10 @@ export const Logo = styled.h1`
   font-size: 16px;
   margin-top: 0;
   font-family: 'Nunito';
+  text-decoration: none;
 `;
+
+
 
 export const Navigation = styled.ul`
   list-style-type: none;
@@ -31,5 +34,5 @@ export const Menu = styled.li`
   font-weight: 700;
   letter-spacing: 1.5px;
   text-decoration: none;
-  color: red;
+  color: #8dc63f;
 `;
