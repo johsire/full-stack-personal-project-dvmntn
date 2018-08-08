@@ -9,7 +9,7 @@ import Header from '../header';
  * Style imports
  */
 
-import { Wrapper, Title,MiniTitle, HeroSection } from './styles';
+import { Wrapper, Title, MiniTitle, HeroSection } from './styles';
 
 const Landing = () => (
      <Wrapper>

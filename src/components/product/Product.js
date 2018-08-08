@@ -9,12 +9,22 @@ import Header from '../header';
  * Style imports
  */
 
-import { Wrapper } from './styles';
+import { Wrapper, PriceBanner, LeftPriceBanner, PriceBannerText, MidPriceBanner } from './styles';
 
 const Product = () => (
   <Wrapper>
     <Header />
-    This is the product/ pricing page
+    <PriceBanner>
+    <LeftPriceBanner>
+    <PriceBannerText>
+      <h2>Every Day</h2>
+    </PriceBannerText>
+    </LeftPriceBanner>
+    <MidPriceBanner>
+
+    </MidPriceBanner>
+
+    </PriceBanner>
   </Wrapper>
    );
 
