@@ -9,7 +9,7 @@ import Header from '../header';
  * Style imports
  */
 
-import { Wrapper, PriceBanner, LeftPriceBanner, PriceBannerText, MidPriceBanner } from './styles';
+import { Wrapper, PriceBanner, LeftPriceBanner, PriceBannerText, MidPriceBanner, RightPriceBanner } from './styles';
 
 const Product = () => (
   <Wrapper>
@@ -21,8 +21,15 @@ const Product = () => (
     </PriceBannerText>
     </LeftPriceBanner>
     <MidPriceBanner>
-
+    <PriceBannerText>
+      <h2>Three times a Week</h2>
+    </PriceBannerText>
     </MidPriceBanner>
+    <RightPriceBanner>
+    <PriceBannerText>
+      <h2>Once a Week</h2>
+    </PriceBannerText>
+    </RightPriceBanner>
 
     </PriceBanner>
   </Wrapper>

@@ -11,29 +11,26 @@ export const PriceBanner = styled.div`
  height: 40%;
  padding-bottom: 30px; 
  display: flex;
- justify-content: space;
+ justify-content: space-around;
  background-color: pink; 
 `;
 
 export const LeftPriceBanner = styled.div`
  width: 25%
  height: 100%
- margin-left: 25px;
  background-color: purple; 
 `;
 
 export const MidPriceBanner = styled.div`
  width: 25%
  height: 100%
- margin-left: 55px;
  background-color: green; 
 `;
 
 export const RightPriceBanner = styled.div`
  width: 25%
  height: 100%
- margin-left: 55px;
- background-color: green; 
+ background-color: black; 
 `;
 
 
