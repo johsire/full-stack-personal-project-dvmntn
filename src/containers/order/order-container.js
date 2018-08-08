@@ -7,9 +7,8 @@ class OdrderContainer extends Component {
     super();
 
     this.state={
-      firstName: '',
-      lastName: '',
-      address: '',
+      userId: '',
+      street: '',
       city: '',
       state: '',
       zip: 0,
@@ -33,8 +32,8 @@ class OdrderContainer extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      name: this.state.name,
-      address: this.state.address,
+      UserId: this.state.userId,
+      Street: this.state.street,
       city: this.state.city,
       state: this.state.state,
       zip: this.state.zip
@@ -43,9 +42,8 @@ class OdrderContainer extends Component {
     axios.post('api/address', data)
       .then(res => {
         this.setState({
-          firstName: '',
-          lastName: '',
-          address: '',
+          userId: '',
+          street: '',
           city: '',
           state: '',
           zip: 0,
@@ -62,25 +60,21 @@ class OdrderContainer extends Component {
       <div>
       <Order />
 
-        Name: {this.state.name} <br/>
-        Address: {this.state.address} <br/>
-        City: {this.state.city}
-        State: {this.state.state}
-        Zip: {this.state.zip} <br/><br/>
+        User: {this.state.userId} <br/>
+        Street: {this.state.street} <br/>
+        City: {this.state.city}<br/>
+        State: {this.state.state}<br/>
+        Zip: {this.state.zip} <br/>
 
       <form onSubmit={e => this.handleSubmit(e)}>  
         <div className="inputBox">
           <br/>
-          <input name="name" type='text' placeholder='First Name' 
-          value={this.state.name} onChange={e => this.handleChange(e)} 
-          />
-          <br/>
-          <input name="name" type='text' placeholder='Last Name' 
-          value={this.state.name} onChange={e => this.handleChange(e)} 
+          <input name="userId" type='text' placeholder='User Id' 
+          value={this.state.userId} onChange={e => this.handleChange(e)} 
           />
           <br/>
           <br/>
-          <input name="address" type='text' placeholder='Address' value={this.state.address} onChange={e => this.handleChange(e)}/>
+          <input name="street" type='text' placeholder='Street' value={this.state.street} onChange={e => this.handleChange(e)}/>
           <br/>
           <br/>
           <input name="city" type='text' placeholder='City' value={this.state.city} onChange={e => this.handleChange(e)} />
