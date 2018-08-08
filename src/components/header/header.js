@@ -13,31 +13,34 @@ const authenticateAuth0 = () => {
   console.log('tset');
   isLoggedIn = true;
   console.log(isLoggedIn, 'LOGGED IN STATUS');
-}
+};
 
-
-const Header = () => (
-  <HeaderWrapper>
-   <Link to="/">
-    <Logo>#AvaocadoToastLife</Logo>
-   </Link>
-  <Navigation>
-    <Link to="/products">
-      <Menu>Products</Menu>
-    </Link>
-    <Link to="/order">
-      <Menu>Order</Menu>
-    </Link>
-    {isLoggedIn && (
-      <Link to="/account">
-        <Menu>Account</Menu>
-    </Link>
-    )}
-    {!isLoggedIn && <Menu onClick={() => authenticateAuth0()}>Login</Menu>}
-   </Navigation>
- </HeaderWrapper>
-);
-
+class Header extends Component {
+  render() {
+    return (
+      <HeaderWrapper>
+      <Link to="/">
+       <Logo>#AvaocadoToastLife</Logo>
+      </Link>
+     <Navigation>
+       <Link to="/products">
+         <Menu>Products</Menu>
+       </Link>
+       <Link to="/order">
+         <Menu>Order</Menu>
+       </Link>
+       {isLoggedIn && (
+         <Link to="/account">
+           <Menu>Account</Menu>
+       </Link>
+       )}
+       {!isLoggedIn && <Menu onClick={() => authenticateAuth0()}>Login</Menu>}
+      </Navigation>
+    </HeaderWrapper>
+    );
+  }
+};
+  
 export default Header;
 
 
