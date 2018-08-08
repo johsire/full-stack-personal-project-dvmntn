@@ -1,4 +1,4 @@
-INSERT INTO users
+INSERT INTO user
 (user_name, email, auth_id, picture)
 VALUES
 ($1, $2, $3, $4)
