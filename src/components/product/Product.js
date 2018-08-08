@@ -9,14 +9,13 @@ import Header from '../header';
  * Style imports
  */
 
-import {  } from './styles';
+import { Wrapper } from './styles';
 
 const Product = () => (
-  <div>
+  <Wrapper>
     <Header />
     This is the product/ pricing page
-     
-  </div>
+  </Wrapper>
    );
 
 export default Product;

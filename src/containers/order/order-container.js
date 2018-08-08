@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Order from '../../components/order';
 
-class order extends Component {
+class OdrderContainer extends Component {
  render() {
    return (
     <Order />
@@ -9,4 +9,4 @@ class order extends Component {
  }
 }
 
-export default order;
+export default OdrderContainer;

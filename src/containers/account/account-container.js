@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Account from '../../components/account';
 
-class account extends Component {
+class AccountContainer extends Component {
  render() {
    return (
     <Account />
@@ -9,4 +9,4 @@ class account extends Component {
  }
 }
 
-export default account;
+export default AccountContainer;
