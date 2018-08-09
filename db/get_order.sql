@@ -1,1 +1,5 @@
-SELECT * FROM orders WHERE product_id = $1;
+SELECT * 
+FROM orders 
+WHERE orders.id = $1;
+
+-- SELECT * FROM orders;

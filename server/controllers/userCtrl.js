@@ -3,7 +3,7 @@ module.exports = {
   getUser: (req, res) => {
     const db = req.app.get('db');
     const id = req.params.id;
-    console.log(req, '<--- REQUEST OBJECT');
+    // console.log(req, '<--- REQUEST OBJECT');
 
     db.get_user([id])
       .then(data => {

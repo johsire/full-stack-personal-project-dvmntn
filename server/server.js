@@ -13,7 +13,7 @@ const userCtrl = require('./controllers/userCtrl');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 const {
  SERVER_PORT,
@@ -95,7 +95,8 @@ app.delete('/api/user/:id', userCtrl.deleteUser);
 
 // ORDER API Endpoints
 app.post('/api/order', orderCtrl.createOrder);
-app.get('/api/order', orderCtrl.getOrder);
+app.get('/api/order/:id', orderCtrl.getOneOrder);
+// app.get('/api/order/:id', orderCtrl.getAllOrders);
 app.put('/api/order/:id', orderCtrl.updateOrder);
 app.delete('/api/order/:id', orderCtrl.deleteOrder);
 

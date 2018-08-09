@@ -11,37 +11,58 @@ module.exports = {
      })
     })
     .catch(err => {
-     res.status(500).send({errorMessage: 'Order not created, something went wrong in the server'});
+     res.status(500).send({ error: err, errorMessage: "Something went wrong in the server" });
     });
  },
 
- getOrder: (res, req) => {
-   const db = req.app.get('db');
-   
-   db.get_order()
-     .then(() => res.sendStatus(200).send(order))
-     .catch(err => {
-       res.status(500).send({errorMessage: 'Something went wrong in the server.'});
-     });
- },
+ getOneOrder: (req, res) => {
+  const db = req.app.get('db');
+  const id = req.params.id;
+  // console.log(req, '<--- REQUEST OBJECT');
+
+  db.get_order([id])
+    .then(data => {
+      console.log(data);
+      return res.status(200).json({
+      order: data[0],
+    })
+  })
+    .catch(err => {
+      res.status(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+    });
+},
+
+// getAllOrders: (res, req) => {
+//   const db = req.app.get('db');
+//   const id = req.params.id;
+  
+//   db.get_order([ id ])
+//     .then(() => res.sendStatus(200).send(order))
+//     .catch(err => {
+//       res.status(500).send({ error: err, errorMessage: "Something went wrong in the server" });
+//     });
+
+//   }, 
 
  updateOrder: (req, res) => {
    const db = req.app.get('db');
+   const id = req.params.id;
 
-   db.update_order()
+   db.update_order({ id })
      .then(() => res.send(200))
      .catch(err => {
-      res.status(500).send({errorMessage: "Something went wrong in the server"})
+      res.status(500).send({ error: err, errorMessage: "Something went wrong in the server" })
       })
  },
 
  deleteOrder: (req, res) => {
    const db = req.app.get('db');
+   const id = req.params.id;
 
-   db.delete_product()
+   db.delete_order({ id })
    .then(() => res.send(200))
    .catch(err => {
-     res.status(500).send({errorMessage: "Something went wrong in the server!"})
+     res.status(500).send({ error: err, errorMessage: "Something went wrong in the server" })
    })
   } 
 };
