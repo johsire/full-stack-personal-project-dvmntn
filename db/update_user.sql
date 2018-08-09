@@ -1,1 +1,1 @@
-UPDATE users SET email = $2 WHERE user.id = $1;
+UPDATE users SET user_name = $1 WHERE users.id = $2;

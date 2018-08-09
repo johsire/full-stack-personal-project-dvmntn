@@ -3,12 +3,17 @@ const express = require('express');
 session = require('express-session');
 axios = require('axios');
 massive = require('massive');
+const bodyParser = require('body-parser');
+
 
 const orderCtrl = require ('./controllers/orderCtrl');
 const addressCtrl = require('./controllers/addressCtrl');
 const userCtrl = require('./controllers/userCtrl');
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 const {
  SERVER_PORT,
@@ -32,29 +37,41 @@ app.use(session({
 
 // USER AUTH0 API Endpoints;
 app.get('/auth/callback', async (req, res) => {
- let payload = {
-   client_id: REACT_APP_CLIENT_ID,
-   client_secret: CLIENT_SECRET,
-   code: req.query.code,
-   grant_type: 'authorization_code',
-   redirect_uri: `http://${req.headers.host}/auth/callback`
- };
+  console.log('IN CALLBACK');
+  try {
+    let payload = {
+      client_id: REACT_APP_CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      code: req.query.code,
+      grant_type: 'authorization_code',
+      redirect_uri: `http://${req.headers.host}/auth/callback`
+    };
 
- let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
+    let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
+    let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
 
-  let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
+      const db = req.app.get('db');
+      let { sub, email, name, picture } = resWithUserData.data;
+      let foundUser = await db.find_user([sub]);
 
-  const db = req.app.get('db');
-  let { sub, email, name, picture } = resWithUserData.data;
-  let foundUser = await db.find_user([sub]);
-
-  if (foundUser[0]) {
-      req.session.user = foundUser[0];
-      res.redirect('/#/');
-  } else {
-    let createdUser = await db.user.create_user([name, email, sub, picture]);
-    req.session.user = createdUser[0];
-    res.redirect('/#/');
+      if (foundUser[0]) {
+          req.session.user = foundUser[0];
+          // res.status(200).json({
+          //   user: foundUser[0],
+          // });
+          res.redirect('/account');
+      } else {
+        console.log('CREATING A NEW USER');
+        let createdUser = await db.create_user([name, email, sub, picture]);
+        req.session.user = createdUser[0];
+        // res.status(200).json({
+        //   user: createdUser[0],
+        // });
+        res.redirect('/account');
+      };
+  }
+  catch(e) {
+    console.log(e, '<-- THIS IS OUR ERROR');
   };
 });
 
@@ -71,16 +88,16 @@ app.get('/api/logout', (req, res) => {
  res.redirect('http://localhost:3000');
 });
 
+// USER API Endpoints
+app.get('/api/user/:id', userCtrl.getUser)
+app.put('/api/user/:id', userCtrl.updateUser)
+app.delete('/api/user/:id', userCtrl.deleteUser);
+
 // ORDER API Endpoints
 app.post('/api/order', orderCtrl.createOrder);
 app.get('/api/order', orderCtrl.getOrder);
 app.put('/api/order/:id', orderCtrl.updateOrder);
 app.delete('/api/order/:id', orderCtrl.deleteOrder);
-
-// USER API Endpoints
-app.get('/api/user/:id', userCtrl.getUser)
-app.put('/api/user/:id', userCtrl.updateUser)
-app.delete('/api/user/:id', userCtrl.deleteUser);
 
 // ADDRESS API Endpoints
 app.post('/api/address/', addressCtrl.createAddress);

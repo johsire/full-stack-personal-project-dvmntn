@@ -1,1 +1,3 @@
-GET * from users WHERE user.id = $1;
+SELECT *
+FROM users
+WHERE users.id = $1;
