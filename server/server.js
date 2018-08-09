@@ -26,7 +26,7 @@ app.use(session({
  saveUninitialized: false  
 }));
 
-
+// USER AUTH0 API Endpoints;
 app.get('/auth/callback', async (req, res) => {
  let payload = {
    client_id: REACT_APP_CLIENT_ID,
@@ -37,14 +37,12 @@ app.get('/auth/callback', async (req, res) => {
  };
 
  let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
-  
 
   let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
 
   const db = req.app.get('db');
   let {sub, email, name, picture} = resWithUserData.data;
   let foundUser = await db.user.find_user([sub]);
-
 
   if (foundUser[0]) {
       req.session.user = foundUser[0];
@@ -69,18 +67,19 @@ app.get('/api/logout', (req, res) => {
  res.redirect('http://localhost:3000');
 });
 
-// Add products to database
-// Create order
-app.post('/api/order', orderCtrl.createOrder);
-// Get order:
+// ORDER API Endpoints
+app.post('/api/order', 'orderCtrl.createOrder');
+app.get('/api/order', 'orderCtrl.getOrder');
+// app.put('/api/order/:id', 'orderCtrl.editOrder');
+app.delete('/api/order/:id', 'orderCtrl.deleteOrder');
 
-// Delete order
-// Edit user
-// Delete user
-// Create address
-app.post("/api/address/", controller.createAddress);
-// get address
-app.get("/api/address", controller.getAddress);
+// USER API Endpoints
+app.put('/api/user/:id', 'userCtrl.editUser')
+app.delete('/api/order/:id', 'userCtrl.deleteUser')
+
+// ADDRESS API Endpoints
+app.post("/api/address/", 'controller.createAddress');
+app.get("/api/address", 'controller.getAddress');
 
 
 
