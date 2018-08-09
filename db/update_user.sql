@@ -1,1 +1,1 @@
-UPDATE users SET email = $2 WHERE auth_id = $1;
+UPDATE users SET email = $2 WHERE user.id = $1;

@@ -78,12 +78,13 @@ app.put('/api/order/:id', orderCtrl.updateOrder);
 app.delete('/api/order/:id', orderCtrl.deleteOrder);
 
 // USER API Endpoints
-app.put('/api/auth/:id', userCtrl.updateUser)
-app.delete('/api/auth/:id', userCtrl.deleteUser);
+app.get('/api/user/:id', userCtrl.getUser)
+app.put('/api/user/:id', userCtrl.updateUser)
+app.delete('/api/user/:id', userCtrl.deleteUser);
 
 // ADDRESS API Endpoints
 app.post('/api/address/', addressCtrl.createAddress);
-app.get('/api/address', addressCtrl.getAddress);
+app.get('/api/address/:id', addressCtrl.getAddress);
 
 
 

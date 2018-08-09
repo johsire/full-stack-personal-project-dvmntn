@@ -1,1 +1,1 @@
-DELETE FROM users WHERE auth_id = $1;
+DELETE FROM users WHERE user.id = $1;

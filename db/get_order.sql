@@ -1,1 +1,1 @@
-SELECT * FROM order WHERE user_id = $1;
+SELECT * FROM order WHERE product_id = $1;

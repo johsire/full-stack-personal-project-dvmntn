@@ -1,0 +1,1 @@
+GET * from users WHERE user.id = $1;
