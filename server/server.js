@@ -6,6 +6,7 @@ massive = require('massive');
 
 const orderCtrl = require ('./controllers/orderCtrl');
 const addressCtrl = require('./controllers/addressCtrl');
+const userCtrl = require('./controllers/userCtrl');
 
 const app = express();
 
@@ -73,16 +74,16 @@ app.get('/api/logout', (req, res) => {
 // ORDER API Endpoints
 app.post('/api/order', orderCtrl.createOrder);
 app.get('/api/order', orderCtrl.getOrder);
-app.put('/api/order/:id', 'orderCtrl.updateOrder');
+app.put('/api/order/:id', orderCtrl.updateOrder);
 app.delete('/api/order/:id', orderCtrl.deleteOrder);
 
 // USER API Endpoints
-// app.put('/api/user/:id', userCtrl.editUser)
-// app.delete('/api/order/:id', 'userCtrl.deleteUser')
+app.put('/api/auth/:id', userCtrl.updateUser)
+app.delete('/api/auth/:id', userCtrl.deleteUser);
 
 // ADDRESS API Endpoints
-// app.post("/api/address/", controller.createAddress);
-// app.get("/api/address", controller.getAddress);
+app.post('/api/address/', addressCtrl.createAddress);
+app.get('/api/address', addressCtrl.getAddress);
 
 
 

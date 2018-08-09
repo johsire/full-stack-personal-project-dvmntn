@@ -5,7 +5,7 @@ module.exports = {
    const db = req.app.get('db');
    const { user_id, street , city, state, zip } = req.body;
 
-   db.address.create_address({ user_id, street , city, state, zip })
+   db.create_address({ user_id, street , city, state, zip })
    .then(data => {
      res.status(200).json({
        address: data,
@@ -19,7 +19,7 @@ module.exports = {
  getAddress: (req, res, next) => {
    const db = req.app.get('db');
    
-   db.address.get_address()
+   db.get_address()
      .then(() => res.send(200).send(address))
      .catch(err => {
        res.status(500).send({errorMessage: "Error! Somethng went wrong"})
