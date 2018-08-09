@@ -8,12 +8,12 @@ module.exports = {
     db.get_user([id])
       .then(data => {
         console.log(data);
-        return res.status(200).json({
+        return res.sendStatus(200).json({
         user: data[0],
       })
     })
       .catch(err => {
-        res.status(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+        res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server"});
       });
   },
 
@@ -29,7 +29,7 @@ module.exports = {
       data: `Successfully updated!`,
     }))
     .catch(err => {
-     res.status(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+     res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server"});
      }); 
   },
 
@@ -39,7 +39,7 @@ module.exports = {
    db.delete_user()
    .then(() => res.send(200))
    .catch(err => {
-     res.status(500).send({error: err, errorMessage: "Something went wrong in the server"})
+     res.sendStatus(500).send({error: err, errorMessage: "Something went wrong in the server"})
    })
   } 
 };

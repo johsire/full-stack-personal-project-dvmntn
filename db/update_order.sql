@@ -1,1 +1,1 @@
-UPDATE orders SET description = $2 WHERE product_id = $1;
+UPDATE orders SET product_id = $1 WHERE orders.id = $2;

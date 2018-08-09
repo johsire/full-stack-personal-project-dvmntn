@@ -7,12 +7,12 @@ module.exports = {
 
    db.create_address({ user_id, street , city, state, zip })
    .then(data => {
-     res.status(200).json({
+     res.sendStatus(200).json({
        address: data,
      })
    })
    .catch(err => {
-     res.status(500).send({errorMessage: "Address not found! Something went wrong!"});
+     res.sendStatus(500).send({errorMessage: "Address not found! Something went wrong!"});
    });
  },
 
@@ -22,7 +22,7 @@ module.exports = {
    db.get_address()
      .then(() => res.send(200).send(address))
      .catch(err => {
-       res.status(500).send({errorMessage: "Error! Somethng went wrong"})
+       res.sendStatus(500).send({errorMessage: "Error! Somethng went wrong"})
      })
    }
 };  
