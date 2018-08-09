@@ -68,18 +68,18 @@ app.get('/api/logout', (req, res) => {
 });
 
 // ORDER API Endpoints
-app.post('/api/order', 'orderCtrl.createOrder');
-app.get('/api/order', 'orderCtrl.getOrder');
+// app.post('/api/order', orderCtrl.createOrder);
+// app.get('/api/order', orderCtrl.getOrder);
 // app.put('/api/order/:id', 'orderCtrl.editOrder');
-app.delete('/api/order/:id', 'orderCtrl.deleteOrder');
+// app.delete('/api/order/:id', orderCtrl.deleteOrder);
 
 // USER API Endpoints
-app.put('/api/user/:id', 'userCtrl.editUser')
-app.delete('/api/order/:id', 'userCtrl.deleteUser')
+// app.put('/api/user/:id', userCtrl.editUser)
+// app.delete('/api/order/:id', 'userCtrl.deleteUser')
 
 // ADDRESS API Endpoints
-app.post("/api/address/", 'controller.createAddress');
-app.get("/api/address", 'controller.getAddress');
+// app.post("/api/address/", controller.createAddress);
+// app.get("/api/address", controller.getAddress);
 
 
 
