@@ -72,9 +72,9 @@ app.get('/api/logout', (req, res) => {
 
 // ORDER API Endpoints
 app.post('/api/order', orderCtrl.createOrder);
-// app.get('/api/order', orderCtrl.getOrder);
-// app.put('/api/order/:id', 'orderCtrl.editOrder');
-// app.delete('/api/order/:id', orderCtrl.deleteOrder);
+app.get('/api/order', orderCtrl.getOrder);
+app.put('/api/order/:id', 'orderCtrl.updateOrder');
+app.delete('/api/order/:id', orderCtrl.deleteOrder);
 
 // USER API Endpoints
 // app.put('/api/user/:id', userCtrl.editUser)
