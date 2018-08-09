@@ -1,7 +1,7 @@
 const express = require('express');
 
 module.exports = {
- createOrder: (req, res) => {
+  createOrder: (req, res) => {
   const db = req.app.get('db');
   const { user_id, product_id } = req.body;
 

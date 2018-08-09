@@ -4,6 +4,9 @@ session = require('express-session');
 axios = require('axios');
 massive = require('massive');
 
+const orderCtrl = require ('./controllers/orderCtrl');
+const addressCtrl = require('./controllers/addressCtrl');
+
 const app = express();
 
 const {
@@ -42,7 +45,7 @@ app.get('/auth/callback', async (req, res) => {
 
   const db = req.app.get('db');
   let { sub, email, name, picture } = resWithUserData.data;
-  let foundUser = await db.find_user([sub])
+  let foundUser = await db.find_user([sub]);
 
   if (foundUser[0]) {
       req.session.user = foundUser[0];
@@ -68,7 +71,7 @@ app.get('/api/logout', (req, res) => {
 });
 
 // ORDER API Endpoints
-// app.post('/api/order', orderCtrl.createOrder);
+app.post('/api/order', orderCtrl.createOrder);
 // app.get('/api/order', orderCtrl.getOrder);
 // app.put('/api/order/:id', 'orderCtrl.editOrder');
 // app.delete('/api/order/:id', orderCtrl.deleteOrder);

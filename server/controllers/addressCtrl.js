@@ -24,6 +24,5 @@ module.exports = {
      .catch(err => {
        res.status(500).send({errorMessage: "Error! Somethng went wrong"})
      })
-
-
- },
+   }
+};  
