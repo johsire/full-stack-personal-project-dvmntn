@@ -1,4 +1,4 @@
-INSERT INTO order
+INSERT INTO orders
 (user_id, product_id)
 VALUES
 ($1, $2)
