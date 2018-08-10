@@ -6,7 +6,7 @@ class OdrderContainer extends Component {
   constructor() {
     super();
 
-    this.state={
+    this.state = {
       userId: '',
       street: '',
       city: '',
@@ -52,7 +52,7 @@ class OdrderContainer extends Component {
      .catch(err => {
        console.log(err, 'error from backend after axios call');
      })
-  }  
+  }
 
     
   render() {

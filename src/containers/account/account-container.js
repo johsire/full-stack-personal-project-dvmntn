@@ -6,7 +6,7 @@ import Account from '../../components/account';
 class AccountContainer extends Component {
   state = {
     orders: [],
-  }
+  };
 
   componentDidMount() {
     this.getUserOrders();
@@ -26,11 +26,22 @@ class AccountContainer extends Component {
       this.setState({ orders });
       console.log(this.state, 'state');
     })
-  }
+  };
+
+  createOrder = () => {
+    axios.post(`/api/order/${user_id, product_id}`, { user_id, product_id })
+         .then(res => {
+          const order = res.data.order;
+          this.setState({ order });  
+         }); 
+  };
+
+  
 
   
  render() {
    const { orders } = this.state;
+  //  const { user } = this.state;
    return (
     <Account title={"This is the Account page"} orders={orders} />
    );
