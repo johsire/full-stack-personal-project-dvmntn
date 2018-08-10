@@ -28,7 +28,7 @@ class AccountContainer extends Component {
     })
   };
 
-  createOrder = () => {
+  createOrder = (user_id, product_id) => {
     axios.post(`/api/order/${user_id, product_id}`, { user_id, product_id })
          .then(res => {
           const order = res.data.order;
