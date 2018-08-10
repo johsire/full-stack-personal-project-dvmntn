@@ -1,20 +1,20 @@
 
 const initalState = {
- user: {}
+ order: {}
 };
 
-const  UPDATE_USER_DATA = 'UPDATE_USER_DATA';
+const  UPDATE_USER_ORDERS = 'UPDATE_USER_ORDERS';
 
-export function updateUserData(user) {
+export function updateUserOrders(order) {
  return {
-   type: UPDATE_USER_DATA,
-   payload: user
+   type: UPDATE_USER_ORDERS,
+   payload: order
  }
 }
 
 export default function reducer(state = initalState, action) {
  switch (action.type) {
-   case UPDATE_USER_DATA:
+   case UPDATE_USER_ORDERS:
    return Object.assign({}, state, { user: action.payload });
 
    default:
