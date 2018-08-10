@@ -28,7 +28,17 @@ class OdrderContainer extends Component {
       const user = res.data.user;
       // console.log(res.data.user, 'in get user function');
       this.setState({ user });
-      // console.log(this.state, 'state');
+      // console.log(this.state, 'get user tate');
+    })
+  };
+
+  updateUser = (user_name, id) => {
+    axios.put(`/api/order/${user_name}`, { user_name, id })
+         .then(res => {
+          const user = res.data.user;
+          // console.log(res, 'from the update user function');
+          this.setState({ user });
+          // console.log(this.state, 'updated user state'); 
     })
   };
 
