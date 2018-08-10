@@ -33,7 +33,7 @@ class OdrderContainer extends Component {
   };
 
   updateUser = (user_name, id) => {
-    axios.put(`/api/order/${user_name}`, { user_name, id })
+    axios.put(`/api/user/${user_name}`, { user_name, id })
          .then(res => {
           const user = res.data.user;
           // console.log(res, 'from the update user function');
@@ -42,12 +42,20 @@ class OdrderContainer extends Component {
     })
   };
 
+  deleteUser = (id) => {
+    axios.delete(`/api/user/${id}`, { id })
+         .then(res => {
+          const user = res.data.user;
+          this.setState({ user }); 
+      });
+  };
+
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();

@@ -25,7 +25,7 @@ module.exports = {
   console.log(name, id, '<--- REQUEST OBJECT');
 
   db.update_user([name, id])
-    .then(data => res.status(200).json({ 
+    .then(() => res.status(200).json({ 
       success: true,
       data: `Successfully updated!`,
     }))
@@ -36,8 +36,9 @@ module.exports = {
 
   deleteUser: (req, res) => {
    const db = req.app.get('db');
+   const id = req.params.id;
 
-   db.delete_user()
+   db.delete_user([id])
    .then(() => res.status(200))
    .catch(err => {
      res.status(500).json({error: err, errorMessage: "Something went wrong in the server"})
