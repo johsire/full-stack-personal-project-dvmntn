@@ -36,6 +36,17 @@ class AccountContainer extends Component {
          }); 
   };
 
+  updateOrder = (product_id, id) => {
+    axios.put(`/api/order/${product_id}`, { product_id, id })
+         .then(res => {
+          const order = res.data.order;
+          // console.log(res, 'from the get users function');
+          this.setState({ order });
+          // console.log(this.state, 'users state'); 
+    })
+  };
+
+
   
 
   
