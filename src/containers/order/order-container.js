@@ -21,7 +21,17 @@ class OdrderContainer extends Component {
       this.setState({ orders: res.data.order })
     })
   }
-  
+
+  getUser = () => {
+    axios.get('/api/user/1').then(res => {
+      // this.props.updateUserData(res.data);
+      const user = res.data.user;
+      // console.log(res.data.user, 'in get user function');
+      this.setState({ user });
+      // console.log(this.state, 'state');
+    })
+  };
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
