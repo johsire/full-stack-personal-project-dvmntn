@@ -4,14 +4,14 @@ module.exports = {
   const db = req.app.get('db');
   const { user_id, product_id } = req.body;
 
-  db.create_order({ user_id, product_id })
+  db.create_order([user_id, product_id])
     .then(data => {
-      res.sendStatus(200).json({
+      res.status(200).json({
       order: data,
      })
     })
     .catch(err => {
-      res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server" });
+      res.status(500).json({ error: err, errorMessage: "Something went wrong in the server" });
     });
  },
 
@@ -28,34 +28,40 @@ module.exports = {
     })
   })
     .catch(err => {
-      res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+      res.status(500).json({ error: err, errorMessage: "Something went wrong in the server"});
     });
 },
 
-// getAllOrders: (res, req) => {
-//   const db = req.app.get('db');
-//   const id = req.params.id;
+getUserOrders: (req, res) => {
+  const db = req.app.get('db');
+  console.log(req.params);
+  const id = req.params.id;
   
-//   db.get_order([ id ])
-//     .then(() => res.sendStatus(200).send(order))
-//     .catch(err => {
-//       res.status(500).send({ error: err, errorMessage: "Something went wrong in the server" });
-//     });
+  db.get_user_orders([ id ])
+      .then(data => {
+        console.log(data);
+        return res.status(200).json({
+        orders: data,
+      })
+    })
+    .catch(err => {
+      res.status(500).send({ error: err, errorMessage: "Something went wrong in the server" });
+    });
 
-//   }, 
+  }, 
 
  updateOrder: (req, res) => {
    const db = req.app.get('db');
+   const product = req.body.product_id;
    const id = req.params.id;
-   const product = req.params.product_id;
 
-   db.update_order({ product, id })
-      .then(data => res.sendStatus(200).json({ 
+   db.update_order([product, id])
+      .then(() => res.status(200).json({ 
        success: true,
        data: `Successfully updated!`,
   }))
   .catch(err => {
-   res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+   res.status(500).json({ error: err, errorMessage: "Something went wrong in the server"});
    }); 
  },
 
@@ -63,10 +69,10 @@ module.exports = {
    const db = req.app.get('db');
    const id = req.params.id;
 
-   db.delete_order({ id })
-   .then(() => res.sendStatus(200))
+   db.delete_order([id])
+   .then(() => res.status(200))
    .catch(err => {
-    res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server" })
+    res.status(500).json({ error: err, errorMessage: "Something went wrong in the server" })
    })
   } 
 };

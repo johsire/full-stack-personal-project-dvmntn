@@ -3,17 +3,18 @@ module.exports = {
   getUser: (req, res) => {
     const db = req.app.get('db');
     const id = req.params.id;
-    // console.log(req, '<--- REQUEST OBJECT');
+    console.log(req.params.id, '<--- REQUEST OBJECT');
 
     db.get_user([id])
       .then(data => {
-        console.log(data);
-        return res.sendStatus(200).json({
+        console.log(data[0]);
+        return res.status(200).json({
         user: data[0],
+        success: true,
       })
     })
       .catch(err => {
-        res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+        res.status(500).json({ error: err, errorMessage: "Something went wrong in the server"});
       });
   },
 
@@ -24,12 +25,12 @@ module.exports = {
   console.log(name, id, '<--- REQUEST OBJECT');
 
   db.update_user([name, id])
-    .then(data => res.send(200).json({ 
+    .then(data => res.status(200).json({ 
       success: true,
       data: `Successfully updated!`,
     }))
     .catch(err => {
-     res.sendStatus(500).send({ error: err, errorMessage: "Something went wrong in the server"});
+     res.status(500).json({ error: err, errorMessage: "Something went wrong in the server"});
      }); 
   },
 
@@ -37,9 +38,9 @@ module.exports = {
    const db = req.app.get('db');
 
    db.delete_user()
-   .then(() => res.send(200))
+   .then(() => res.status(200))
    .catch(err => {
-     res.sendStatus(500).send({error: err, errorMessage: "Something went wrong in the server"})
+     res.status(500).json({error: err, errorMessage: "Something went wrong in the server"})
    })
   } 
 };

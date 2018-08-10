@@ -96,7 +96,7 @@ app.delete('/api/user/:id', userCtrl.deleteUser);
 // ORDER API Endpoints
 app.post('/api/order', orderCtrl.createOrder);
 app.get('/api/order/:id', orderCtrl.getOneOrder);
-// app.get('/api/order/:id', orderCtrl.getAllOrders);
+app.get('/api/orders/user/:id', orderCtrl.getUserOrders);
 app.put('/api/order/:id', orderCtrl.updateOrder);
 app.delete('/api/order/:id', orderCtrl.deleteOrder);
 
