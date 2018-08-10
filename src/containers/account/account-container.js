@@ -46,10 +46,14 @@ class AccountContainer extends Component {
     })
   };
 
+  deleteOrder = (id) => {
+    axios.delete(`/api/order/${id}`, { id })
+         .then(res => {
+           const order = res.data.order;
+           this.setState({ order }); 
+         })
+  }
 
-  
-
-  
  render() {
    const { orders } = this.state;
   //  const { user } = this.state;
