@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
+import { updateUserOrders } from '../../reducers/reducer';
 import Account from '../../components/account';
 
 class AccountContainer extends Component {
@@ -20,11 +22,12 @@ class AccountContainer extends Component {
   
   getUserOrders = () => {
     axios.get('/api/orders/user/1').then(res => {
-      // this.props.updateUserData(res.data);
       const orders = res.data.orders;
       // console.log(res.data.orders, 'in get user orders function');
       this.setState({ orders });
       console.log(this.state, 'state');
+
+      this.props.updateUserOrders(res.data);
     })
   };
 
@@ -63,4 +66,10 @@ class AccountContainer extends Component {
  }
 }
 
-export default AccountContainer;
+function mapStateToProps(state) {
+  return {
+    order: state.order
+  }
+};
+
+export default connect(mapStateToProps, {updateUserOrders})(AccountContainer);
