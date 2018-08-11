@@ -11,8 +11,9 @@ import Header from '../header';
 
 import { Wrapper } from './styles';
 
-const Account = ({ title, orders }) => (
+const Account = ({ title, orders, user }) => (
   <Wrapper>
+  {console.log(user,'this is our user')}
     <Header />
       {title}
       {orders.map(item => {

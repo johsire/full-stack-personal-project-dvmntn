@@ -29,26 +29,6 @@ class OdrderContainer extends Component {
     })
   };
 
-  getUser = () => {
-    axios.get('/api/user/1').then(res => {
-      // this.props.updateUserData(res.data);
-      const user = res.data.user;
-      // console.log(res.data.user, 'in get user function');
-      this.setState({ user });
-      // console.log(this.state, 'get user tate');
-    })
-  };
-
-  updateUser = (user_name, id) => {
-    axios.put(`/api/user/${user_name}`, { user_name, id })
-         .then(res => {
-          const user = res.data.user;
-          // console.log(res, 'from the update user function');
-          this.setState({ user });
-          // console.log(this.state, 'updated user state'); 
-    })
-  };
-
   deleteUser = (id) => {
     axios.delete(`/api/user/${id}`, { id })
          .then(res => {

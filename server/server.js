@@ -103,6 +103,7 @@ app.delete('/api/order/:id', orderCtrl.deleteOrder);
 // ADDRESS API Endpoints
 app.post('/api/address/', addressCtrl.createAddress);
 app.get('/api/address/:id', addressCtrl.getAddress);
+app.get('/api/user/addresses/:id', addressCtrl.getUserAddresses);
 
 
 

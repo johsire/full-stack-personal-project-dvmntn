@@ -8,10 +8,12 @@ import Account from '../../components/account';
 class AccountContainer extends Component {
   state = {
     orders: [],
+    user: {},
   };
 
   componentDidMount() {
     this.getUserOrders();
+    this.getUser();
   }
 
   // logout() {
@@ -57,11 +59,34 @@ class AccountContainer extends Component {
       })
   };
 
+  getUser = () => {
+    console.log('getUser <<-------')
+    axios.get('/api/user/1').then(res => {
+      // this.props.updateUserData(res.data);
+      console.log(res, 'from user axios call')
+      const user = res.data.user;
+      // console.log(res.data.user, 'in get user function');
+      this.setState({ user });
+      // console.log(this.state, 'get user tate');
+    })
+  };
+
+  updateUser = (user_name, id) => {
+    axios.put(`/api/user/${user_name}`, { user_name, id })
+         .then(res => {
+          const user = res.data.user;
+          // console.log(res, 'from the update user function');
+          this.setState({ user });
+          // console.log(this.state, 'updated user state'); 
+    })
+  };
+
+
  render() {
-   const { orders } = this.state;
-  //  const { user } = this.state;
+   const { orders, user } = this.state;
    return (
-    <Account title={"This is the Account page"} orders={orders} />
+    <Account title={"This is the Account page"} orders={orders} user={user} />
+
    );
  }
 };
