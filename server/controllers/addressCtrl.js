@@ -7,22 +7,22 @@ module.exports = {
 
    db.create_address({ user_id, street , city, state, zip })
    .then(data => {
-     res.sendStatus(200).json({
+     res.status(200).json({
        address: data,
      })
    })
    .catch(err => {
-     res.sendStatus(500).send({errorMessage: "Address not found! Something went wrong!"});
+     res.status(500).json({error: err, errorMessage: "Address not found! Something went wrong in the server!"});
    });
  },
 
- getAddress: (req, res, next) => {
+ getAddress: (req, res) => {
    const db = req.app.get('db');
    
    db.get_address()
-     .then(() => res.send(200).send(address))
+     .then(() => res.status(200).json(address))
      .catch(err => {
-       res.sendStatus(500).send({errorMessage: "Error! Somethng went wrong"})
+       res.status(500).json({error: err, errorMessage: "Error! Somethng went wrong in the server"})
      })
    }
 };  
