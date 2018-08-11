@@ -80,7 +80,16 @@ class OdrderContainer extends Component {
      .catch(err => {
        console.log(err, 'error from backend after axios call');
      })
-  }
+
+     axios.get('/api/address/').then(res => {
+      const address = res.data.address;
+      this.setState({ address });
+
+      this.props.updateUserAddress(res.data);
+    })
+  };
+
+ 
 
     
   render() {
