@@ -64,7 +64,7 @@ class AccountContainer extends Component {
     <Account title={"This is the Account page"} orders={orders} />
    );
  }
-}
+};
 
 function mapStateToProps(state) {
   return {

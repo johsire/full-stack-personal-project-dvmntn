@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import Order from '../../components/order';
 import axios from 'axios';
+import { connect } from 'react-redux';
+
+import Order from '../../components/order';
+import { updateUserAddress } from '../../reducers/reducer';
 
 class OdrderContainer extends Component {
   constructor() {
@@ -17,10 +20,14 @@ class OdrderContainer extends Component {
 
   componentDidMount() {
     axios.get('/api/address')
-      .then((res) => {
-      this.setState({ orders: res.data.order })
+         .then((res) => {
+          const address = res.data.address;
+
+          this.setState({ address });
+
+          this.props.updateUserAddress(res.data);
     })
-  }
+  };
 
   getUser = () => {
     axios.get('/api/user/1').then(res => {
@@ -57,6 +64,7 @@ class OdrderContainer extends Component {
     });
   };
 
+
   handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -79,18 +87,8 @@ class OdrderContainer extends Component {
      })
      .catch(err => {
        console.log(err, 'error from backend after axios call');
-     })
-
-     axios.get('/api/address/').then(res => {
-      const address = res.data.address;
-      this.setState({ address });
-
-      this.props.updateUserAddress(res.data);
-    })
+     });
   };
-
- 
-
     
   render() {
     return (
@@ -124,4 +122,10 @@ class OdrderContainer extends Component {
   }
 };
 
-export default OdrderContainer;
+function mapStateToProps(state) {
+  return {
+    address: state.address
+  }
+}
+
+export default connect(mapStateToProps, {updateUserAddress})(OdrderContainer);
