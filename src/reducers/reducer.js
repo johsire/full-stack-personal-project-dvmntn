@@ -13,10 +13,10 @@ const  UPDATE_USER_ADDRESS = 'UPDATE_USER_ADDRESS';
  export default function reducer(state = initialState, action) {
   switch(action.type) {
     case UPDATE_USER_ORDERS: 
-    return Object.assign({}, state, { user: action.payload });
+      return Object.assign({}, state, { user: action.payload });
       
     case UPDATE_USER_ADDRESS:
-    return object.assign({}, state, { address: action.payload });
+      return Object.assign({}, state, { address: action.payload });
 
     default:
       return state;
