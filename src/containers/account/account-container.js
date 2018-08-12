@@ -23,7 +23,7 @@ class AccountContainer extends Component {
    const { orders, user, userLoaded } = this.props;
 
    if (!userLoaded) {
-     return <p>'Fetching data...'</p>;
+     return <p>Fetching data...</p>;
    } else {
      return (
       <Account orders={orders} user={user} />
