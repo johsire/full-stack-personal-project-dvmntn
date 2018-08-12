@@ -17,7 +17,6 @@ export default handleActions(
     },
     // GET_USER:GET_SUCCESS
     [`${constants.GET_USER}:GET_SUCCESS`](state, { payload }) {
-      console.log('GET_USER DONE XXXXXXXXX');
       return {
         ...state,
         user: { results: { ...payload }, loaded: true },
@@ -32,7 +31,6 @@ export default handleActions(
     },
     // GET_USER_ORDERS:GET_SUCCESS
     [`${constants.GET_USER_ORDERS}:GET_SUCCESS`](state, { payload }) {
-      console.log('GET_USER_ORDERS DONE XXXXXXXXX');
       return {
         ...state,
         orders: { results: { ...payload }, loaded: true },

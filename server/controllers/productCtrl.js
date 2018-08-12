@@ -1,12 +1,13 @@
 
 module.exports = {
-  getUser: (req, res) => {
+  getProducts: (req, res) => {
     const db = req.app.get('db');
 
     db.get_products()
       .then(data => {
+        console.log(data, '<-=----- PRODUCTS');
         return res.status(200).json({
-        data: data[0],
+        data: data,
         success: true,
       })
     })

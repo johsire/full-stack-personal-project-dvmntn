@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const orderCtrl = require ('./controllers/orderCtrl');
 const addressCtrl = require('./controllers/addressCtrl');
 const userCtrl = require('./controllers/userCtrl');
+const productCtrl = require('./controllers/productCtrl');
 
 const app = express();
 

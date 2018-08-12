@@ -11,16 +11,19 @@ import Header from '../header';
 
 import { Wrapper, ImageWrapper } from './styles';
 
-const Account = ({ orders, user }) => (
+const Account = ({ user, orders, products, mapOdersToProducts }) => (
   <Wrapper>
     <Header />
       Hi, {user.user_name}
       <ImageWrapper src={user.picture} alt={user.user_name} />
       {orders.map(item => {
-        return (
+        // Let's get the product that matches the one
+        const product = mapOdersToProducts(item.product_id, products);
+        return(
           <Fragment key={item.id}>
             <p>Order ID: {item.id}</p>
-            <p>Product ID: {item.product_id}</p>
+            <p>{product.title}</p>
+            <p>{product.price}</p>
             <hr />
           </Fragment>
         )

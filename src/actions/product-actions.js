@@ -4,5 +4,5 @@ import { API_URL } from '../constants';
 
 // ACTION CREATORS
 export const getProducts = () => async (dispatch) => {
- return performGet(dispatch, `${API_URL}/api/products/`, {}, constants.GET_PRODUCTS);
+ return performGet(dispatch, `${API_URL}/api/products/`, {}, null, constants.GET_PRODUCTS);
 };

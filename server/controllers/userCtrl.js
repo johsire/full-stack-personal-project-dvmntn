@@ -3,7 +3,6 @@ module.exports = {
   getUser: (req, res) => {
     const db = req.app.get('db');
     const id = req.params.id;
-    console.log(req.params.id, '<--- REQUEST OBJECT');
 
     db.get_user([id])
       .then(data => {
@@ -22,7 +21,6 @@ module.exports = {
   const db = req.app.get('db');
   const id = req.params.id;
   const name = req.body.user_name;
-  console.log(name, id, '<--- REQUEST OBJECT');
 
   db.update_user([name, id])
     .then(() => res.status(200).json({ 

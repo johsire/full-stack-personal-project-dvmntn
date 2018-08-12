@@ -34,7 +34,6 @@ module.exports = {
 
 getUserOrders: (req, res) => {
   const db = req.app.get('db');
-  console.log(req.params, 'XXXXXXXXX');
   const id = req.params.id;
   
   db.get_user_orders([id])

@@ -16,7 +16,6 @@ export default handleActions(
     },
     // GET_PRODUCTS:GET_SUCCESS
     [`${constants.GET_PRODUCTS}:GET_SUCCESS`](state, { payload }) {
-      console.log('GET_PRODUCTS DONE XXXXXXXXX');
       return {
         ...state,
         products: { results: { ...payload }, loaded: true },
