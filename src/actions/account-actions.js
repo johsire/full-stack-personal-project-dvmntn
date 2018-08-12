@@ -2,11 +2,11 @@ import * as constants from '../constants/account-constants';
 import { performGet } from '../utilities/api-helpers';
 
 // ACTION CREATORS
-export const getUser = (id) => (dispatch) => {
+export const getUser = (id) => async (dispatch) => {
   return performGet(dispatch, `/api/user/${id}`, {}, id, constants.GET_USER);
 };
 
-export const getUserOrders = (id) => (dispatch) => {
+export const getUserOrders = (id) => async (dispatch) => {
   return performGet(dispatch, `/api/orders/user/${id}`, {}, id, constants.GET_USER_ORDERS);
 };
 

@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import * as constants from '../constants/acccount-constants';
+import * as constants from '../constants/account-constants';
 
 const initialState = {
   user: { results: {}, loaded: false },
@@ -10,7 +10,6 @@ export default handleActions(
   {
     // GET_USER:GET_START
     [`${constants.GET_USER}:GET_START`](state) {
-      con
       return {
         ...state,
         loaded: false,

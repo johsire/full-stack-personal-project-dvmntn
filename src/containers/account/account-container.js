@@ -15,8 +15,8 @@ class AccountContainer extends Component {
 
   componentDidMount() {
     const { loadUser, loadUserOrders } = this.props;
-    loadUserOrders(1);
     loadUser(1);
+    // loadUserOrders(1);
   }
 
  render() {

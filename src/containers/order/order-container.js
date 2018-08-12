@@ -3,7 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 import Order from '../../components/order';
-import { updateUserAddress } from '../../reducers/reducer';
 
 class OdrderContainer extends Component {
   constructor() {
@@ -19,23 +18,23 @@ class OdrderContainer extends Component {
   };
 
   componentDidMount() {
-    axios.get('/api/address')
-         .then((res) => {
-          const address = res.data.address;
+    // axios.get('/api/address')
+    //      .then((res) => {
+    //       const address = res.data.address;
 
-          this.setState({ address });
+    //       this.setState({ address });
 
-          this.props.updateUserAddress(res.data);
-    })
+    //       this.props.updateUserAddress(res.data);
+    // })
   };
 
-  deleteUser = (id) => {
-    axios.delete(`/api/user/${id}`, { id })
-         .then(res => {
-          const user = res.data.user;
-          this.setState({ user }); 
-      });
-  };
+  // deleteUser = (id) => {
+  //   axios.delete(`/api/user/${id}`, { id })
+  //        .then(res => {
+  //         const user = res.data.user;
+  //         this.setState({ user }); 
+  //     });
+  // };
 
 
   handleChange = (e) => {
@@ -108,4 +107,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {updateUserAddress})(OdrderContainer);
+// export default connect(mapStateToProps, {updateUserAddress})(OdrderContainer);
+export default OdrderContainer;
