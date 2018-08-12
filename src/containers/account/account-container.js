@@ -13,10 +13,6 @@ import Account from '../../components/account';
 import { getUser, getUserOrders } from '../../actions/account-actions'
 
 class AccountContainer extends Component {
-  state = {
-    orders: [],
-    user: {},
-  };
 
   componentDidMount() {
     const { loadUser, loadUserOrders } = this.props;
@@ -91,16 +87,22 @@ class AccountContainer extends Component {
 
 
  render() {
-   const { orders, user } = this.state;
-   return (
-    <Account title={"This is the Account page"} orders={orders} user={user} />
+   const { orders, user, userLoaded } = this.props;
 
-   );
+   if (!userLoaded) {
+     return <p>'Fetching data...'</p>;
+   } else {
+     return (
+      <Account title={"This is the Account page"} orders={orders} user={user} />
+     );
+   }
  }
 };
 
 const mapStateToProps = state => ({
   user: state.AccountReducer.user.results,
+  userLoaded: state.AccountReducer.user.loaded,
+  ordersLoaded: state.AccountReducer.orders.loaded,
   orders: state.AccountReducer.orders.results,
 });
 
