@@ -9,13 +9,14 @@ import Header from '../header';
  * Style imports
  */
 
-import { Wrapper } from './styles';
+import { Wrapper, ImageWrapper } from './styles';
 
 const Account = ({ title, orders, user }) => (
   <Wrapper>
   {console.log(user,'this is our user')}
     <Header />
-      {title}
+      Hi, {user.user_name}
+      <ImageWrapper src={user.picture} alt={user.user_name} />
       {orders.map(item => {
         return (
           <Fragment key={item.id}>

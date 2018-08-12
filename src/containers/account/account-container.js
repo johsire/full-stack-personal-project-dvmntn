@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 
-import { updateUserOrders } from '../../reducers/reducer';
+/**
+ * Component imports
+ */
 import Account from '../../components/account';
+
+/**
+ * Action imports
+ */
+import { getUser, getUserOrders } from '../../actions/account-actions'
 
 class AccountContainer extends Component {
   state = {
@@ -12,8 +19,9 @@ class AccountContainer extends Component {
   };
 
   componentDidMount() {
-    this.getUserOrders();
-    this.getUser();
+    const { loadUser, loadUserOrders } = this.props;
+    loadUserOrders(1);
+    loadUser(1);
   }
 
   // logout() {
@@ -27,22 +35,22 @@ class AccountContainer extends Component {
       const orders = res.data.orders;
       // console.log(res.data.orders, 'in get user orders function');
       this.setState({ orders });
-      console.log(this.state, 'state');
+      console.log(this.state, 'this is our user orders state');
 
-      this.props.updateUserOrders(res.data);
+      // this.props.updateUserOrders(res.data);
     })
   };
 
-  createOrder = (user_id, product_id) => {
-    axios.post(`/api/order/${user_id, product_id}`, { user_id, product_id })
-         .then(res => {
-          const order = res.data.order;
-          this.setState({ order });  
-         }); 
-  };
+  // createOrder = (user_id, product_id) => {
+  //   axios.post(`/api/order/${ user_id, product_id }$`, { user_id, product_id })
+  //        .then(res => {
+  //         const order = res.data.order;
+  //         this.setState({ order });  
+  //        }); 
+  // };
 
   updateOrder = (product_id, id) => {
-    axios.put(`/api/order/${product_id}`, { product_id, id })
+    axios.put(`/api/order/${ product_id }`, { product_id, id })
          .then(res => {
           const order = res.data.order;
           // console.log(res, 'from the get users function');
@@ -91,10 +99,14 @@ class AccountContainer extends Component {
  }
 };
 
-function mapStateToProps(state) {
-  return {
-    order: state.order
-  }
-};
+const mapStateToProps = state => ({
+  user: state.AccountReducer.user.results,
+  orders: state.AccountReducer.orders.results,
+});
 
-export default connect(mapStateToProps, {updateUserOrders})(AccountContainer);
+const mapDispatchToProps = dispatch => ({
+  loadUser: id => dispatch(getUser(id)),
+  loadUserOrders: id => dispatch(getUserOrders(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountContainer);

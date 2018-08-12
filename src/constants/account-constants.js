@@ -1,0 +1,3 @@
+// ACTION CONSTANTS
+export const GET_USER = 'GET_USER';
+export const GET_USER_ORDERS = 'GET_USER_ORDERS';

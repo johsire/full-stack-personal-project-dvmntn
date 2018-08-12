@@ -34,10 +34,10 @@ module.exports = {
 
 getUserOrders: (req, res) => {
   const db = req.app.get('db');
-  console.log(req.params);
+  console.log(req.params, 'XXXXXXXXX');
   const id = req.params.id;
   
-  db.get_user_orders([ id ])
+  db.get_user_orders([id])
       .then(data => {
         console.log(data);
         return res.status(200).json({
