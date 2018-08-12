@@ -16,13 +16,13 @@ class AccountContainer extends Component {
   componentDidMount() {
     const { loadUser, loadUserOrders } = this.props;
     loadUser(1);
-    // loadUserOrders(1);
+    loadUserOrders(1);
   }
 
  render() {
-   const { orders, user, userLoaded } = this.props;
+   const { orders, user, userLoaded, ordersLoaded } = this.props;
 
-   if (!userLoaded) {
+   if (!userLoaded || !ordersLoaded) {
      return <p>Fetching data...</p>;
    } else {
      return (
@@ -35,8 +35,8 @@ class AccountContainer extends Component {
 const mapStateToProps = state => ({
   userLoaded: state.AccountReducer.user.loaded,
   ordersLoaded: state.AccountReducer.orders.loaded,
-  user: state.AccountReducer.user.results,
-  orders: state.AccountReducer.orders.results,
+  user: state.AccountReducer.user.results.data,
+  orders: state.AccountReducer.orders.results.data,
 });
 
 const mapDispatchToProps = dispatch => ({

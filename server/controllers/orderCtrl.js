@@ -24,7 +24,7 @@ module.exports = {
     .then(data => {
       console.log(data);
       return res.status(200).json({
-      order: data[0],
+      data: data[0],
     })
   })
     .catch(err => {
@@ -41,7 +41,7 @@ getUserOrders: (req, res) => {
       .then(data => {
         console.log(data);
         return res.status(200).json({
-        orders: data,
+        data: data,
       })
     })
     .catch(err => {

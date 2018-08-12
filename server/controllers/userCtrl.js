@@ -9,7 +9,7 @@ module.exports = {
       .then(data => {
         console.log(data[0]);
         return res.status(200).json({
-        user: data[0],
+        data: data[0],
         success: true,
       })
     })

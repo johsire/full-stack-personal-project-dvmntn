@@ -8,7 +8,7 @@ module.exports = {
    db.create_address({ user_id, street , city, state, zip })
    .then(data => {
      res.status(200).json({
-       address: data,
+       data: data,
      })
    })
    .catch(err => {
@@ -25,7 +25,7 @@ module.exports = {
       // console.log(data[0]);
       return res.status(200).json({
       // address: data[0],
-      address: data,
+      data: data,
       success: true,
    })
  })
@@ -43,7 +43,7 @@ module.exports = {
         .then(data => {
           console.log(data);
           return res.status(200).json({
-          addresses: data,
+          data: data,
         })
       })
       .catch(err => {

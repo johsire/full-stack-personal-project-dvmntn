@@ -13,6 +13,7 @@ import { Wrapper, ImageWrapper } from './styles';
 
 const Account = ({ orders, user }) => (
   <Wrapper>
+  {console.log(orders,'this is our orders')}
   {console.log(user,'this is our user')}
     <Header />
       Hi, {user.user_name}
