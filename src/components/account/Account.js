@@ -13,8 +13,6 @@ import { Wrapper, ImageWrapper } from './styles';
 
 const Account = ({ orders, user }) => (
   <Wrapper>
-  {console.log(orders,'this is our orders')}
-  {console.log(user,'this is our user')}
     <Header />
       Hi, {user.user_name}
       <ImageWrapper src={user.picture} alt={user.user_name} />
@@ -27,9 +25,6 @@ const Account = ({ orders, user }) => (
           </Fragment>
         )
       })}
-  </Wrapper>
-      
-    
-   );
+  </Wrapper>);
 
 export default Account;

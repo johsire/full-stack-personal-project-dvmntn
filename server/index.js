@@ -105,7 +105,8 @@ app.post('/api/address/', addressCtrl.createAddress);
 app.get('/api/address/:id', addressCtrl.getAddress);
 app.get('/api/user/addresses/:id', addressCtrl.getUserAddresses);
 
-
+// PRODUCTS API Endpoints
+app.get('/api/products', productCtrl.getProducts);
 
 app.listen(SERVER_PORT, () => {
  console.log(`W.Ferrell Crashing Weddings on Port: ${SERVER_PORT}`);
