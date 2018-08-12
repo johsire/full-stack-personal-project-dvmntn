@@ -11,7 +11,7 @@ import Header from '../header';
 
 import { Wrapper, ImageWrapper } from './styles';
 
-const Account = ({ title, orders, user }) => (
+const Account = ({ orders, user }) => (
   <Wrapper>
   {console.log(user,'this is our user')}
     <Header />

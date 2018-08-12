@@ -10,6 +10,12 @@ export const getUserOrders = (id) => (dispatch) => {
   return performGet(dispatch, `/api/orders/user/${id}`, {}, id, constants.GET_USER_ORDERS);
 };
 
+// updateOrder
+// `/api/order/${ product_id }`
+
+// deleteOrder
+// `/api/order/${id}`
+
 // Below is equivalient to above
 // const getUser = (id) => {
 // return (dispatch) => {
