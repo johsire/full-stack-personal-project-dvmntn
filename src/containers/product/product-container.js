@@ -28,28 +28,10 @@ class ProductContainer extends Component {
     return (
      <Product products={products} />
     );
-  }
-  // const products = [
-  //   {
-  //     title: 'Daily',
-  //     description: 'Delivered fresh everyday',
-  //     price: '$39.99'
-  //   },
-  //   {
-  //     title: '3x per wk',
-  //     description: 'Delivered 3 times each week',
-  //     price: '$19.99'
-  //   },
-  //   {
-  //     title: 'Once per wk',
-  //     description: 'Delivered once each week',
-  //     price: '$9.99'
-  //   }
-  // ];
-  // console.log(products)
-  // return ( 
-  }
- };
+   }
+ }
+};
+
 const mapStateToProps = state => ({
   productsLoaded: state.ProductsReducer.products.loaded,
   products: state.ProductsReducer.products.results.data,
