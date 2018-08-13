@@ -12,7 +12,7 @@ import Header from '../header';
 
 import { Wrapper } from './styles';
 
-const Order = ({ onToken }) => (
+const Order = ({ onToken, stripePK }) => (
   <Wrapper>
   <Header />
   {/* <form onSubmit={e => this.handleSubmit(e)}>  
@@ -33,8 +33,8 @@ const Order = ({ onToken }) => (
   </form>   */}
   <StripeCheckout
     token={onToken}
-    stripeKey={st}
-    amount={10000}
+    stripeKey={stripePK}
+    amount={20000}
   />
   </Wrapper>
  );

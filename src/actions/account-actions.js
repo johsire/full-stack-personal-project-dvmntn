@@ -4,11 +4,11 @@ import { API_URL } from '../constants';
 
 // ACTION CREATORS
 export const getUser = (id) => async (dispatch) => {
-  return performGet(dispatch, `${API_URL}/api/user/${id}`, {}, id, constants.GET_USER);
+  return performGet(dispatch, `/api/user/${id}`, {}, id, constants.GET_USER);
 };
 
 export const getUserOrders = (id) => async (dispatch) => {
-  return performGet(dispatch, `${API_URL}/api/orders/user/${id}`, {}, id, constants.GET_USER_ORDERS);
+  return performGet(dispatch, `/api/orders/user/${id}`, {}, id, constants.GET_USER_ORDERS);
 };
 
 // updateOrder

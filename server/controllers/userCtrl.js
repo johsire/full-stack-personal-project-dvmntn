@@ -6,7 +6,6 @@ module.exports = {
 
     db.get_user([id])
       .then(data => {
-        console.log(data[0]);
         return res.status(200).json({
         data: data[0],
         success: true,

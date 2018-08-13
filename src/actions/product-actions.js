@@ -7,7 +7,7 @@ const UNSPLASH_ACCESS_KEY = '4bbb36ca58e2743df2f6e75f65394c4f2fba5ac5045cf8cb103
 
 // ACTION CREATORS
 export const getProducts = () => async (dispatch) => {
- return performGet(dispatch, `${API_URL}/api/products/`, {}, null, constants.GET_PRODUCTS);
+ return performGet(dispatch, `/api/products/`, {}, null, constants.GET_PRODUCTS);
 };
 
 export const getUnsplashPhotos = () => async (dispatch) => {

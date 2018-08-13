@@ -1,15 +1,16 @@
-var stripe = require("stripe")("sk_test_uM8jNLDUHoYXG0Vh1IHR5WY2");
+var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 module.exports = {
   createOrder: (req, res) => {
   const db = req.app.get('db');
-  const { user_id, product_id, amount, email } = req.body;
+  // const { user_id, product_id, amount, email } = req.body;
+  const { amount, currency, source, description } = req.body;
   console.log('CREATE ORDER IS BEING CALED');
 
   stripe.charges.create({
-    amount: 200,
-    currency: "usd",
-    source: "tok_amex", // obtained with Stripe.js
+    amount: amount,
+    currency: currency,
+    source: source, // obtained with Stripe.js
     description: `<---- Charge for ${email}`
   }, (err, charge) => {
     console.log(charge, 'THIS IS THE CHARGE OBJECT');

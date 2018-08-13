@@ -12,6 +12,7 @@ import Order from '../../components/order';
  * Action imports
  */
 import { getUser } from '../../actions/account-actions';
+import { chargeOrder } from '../../actions/order-actions';
 
 class OdrderContainer extends Component {
   constructor() {
@@ -87,17 +88,19 @@ class OdrderContainer extends Component {
     alert('Payment Error');
   };
   
-  onToken = () => token => {
-    console.log('IN ON TOKEN ABOUT TO CHARGE');
-    return axios.post(API_URL,
-      {
-        description: 'Test payment from app!',
-        source: token.id,
-        currency: 'USD',
-        amount: 1000
-      })
-      .then(this.successPayment)
-      .catch(this.errorPayment);
+  onToken = async token => {
+    console.log(token, 'IN ON TOKEN ABOUT TO CHARGE');
+    const { chargePayment } = this.props;
+    const data = {
+      description: 'Test payment from app!',
+      source: token.id,
+      currency: 'USD',
+      amount: 1000
+    };
+
+    const res = await chargePayment(data)
+      this.successPayment(res);
+      this.errorPayment(res);
     }
     
   render() {
@@ -107,7 +110,7 @@ class OdrderContainer extends Component {
       return (<p>Loading...please wait!</p>)
     } else {
       return (
-        <Order onToken={this.onToken} user={user} />
+        <Order onToken={this.onToken} user={user} stripePK="pk_test_6ccXGhoG0iWvSP7OcPSbRFuj" />
       );
     };
   }
@@ -120,6 +123,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadUser: id => dispatch(getUser(id)),
+  chargePayment: data => dispatch(chargeOrder(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OdrderContainer);

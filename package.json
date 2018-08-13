@@ -32,12 +32,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:5050"
-    },
-    "/auth/callback": {
-      "target": "http://localhost:5050"
-    }
-  }
+  "proxy": "http://localhost:5050"
 }
