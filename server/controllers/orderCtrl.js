@@ -7,10 +7,10 @@ module.exports = {
   console.log('CREATE ORDER IS BEING CALED');
 
   stripe.charges.create({
-    amount: amount,
+    amount: 200,
     currency: "usd",
     source: "tok_amex", // obtained with Stripe.js
-    description: `Charge for ${email}`
+    description: `<---- Charge for ${email}`
   }, (err, charge) => {
     console.log(charge, 'THIS IS THE CHARGE OBJECT');
     // asynchronously called

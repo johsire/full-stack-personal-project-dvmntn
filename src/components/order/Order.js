@@ -33,7 +33,8 @@ const Order = ({ onToken }) => (
   </form>   */}
   <StripeCheckout
     token={onToken}
-    stripeKey="pk_test_6ccXGhoG0iWvSP7OcPSbRFuj"
+    stripeKey={st}
+    amount={10000}
   />
   </Wrapper>
  );
