@@ -1,10 +1,20 @@
+var stripe = require("stripe")("sk_test_uM8jNLDUHoYXG0Vh1IHR5WY2");
 
 module.exports = {
   createOrder: (req, res) => {
   const db = req.app.get('db');
-  const { user_id, product_id } = req.body;
+  const { user_id, product_id, amount, email } = req.body;
+  console.log('CREATE ORDER IS BEING CALED');
 
-  db.create_order([user_id, product_id])
+  stripe.charges.create({
+    amount: amount,
+    currency: "usd",
+    source: "tok_amex", // obtained with Stripe.js
+    description: `Charge for ${email}`
+  }, (err, charge) => {
+    console.log(charge, 'THIS IS THE CHARGE OBJECT');
+    // asynchronously called
+    db.create_order([user_id, product_id])
     .then(data => {
       res.status(200).json({
       order: data,
@@ -13,6 +23,7 @@ module.exports = {
     .catch(err => {
       res.status(500).json({ error: err, errorMessage: "Something went wrong in the server" });
     });
+  });
  },
 
  getOneOrder: (req, res) => {

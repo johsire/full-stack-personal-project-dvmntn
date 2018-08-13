@@ -1,4 +1,5 @@
 import React from 'react';
+import StripeCheckout from 'react-stripe-checkout';
 
 /**
  * Component Imports
@@ -11,10 +12,29 @@ import Header from '../header';
 
 import { Wrapper } from './styles';
 
-const Order = () => (
+const Order = ({ onToken }) => (
   <Wrapper>
   <Header />
-    This is the Order page
+  {/* <form onSubmit={e => this.handleSubmit(e)}>  
+    <div className="inputBox">
+      <br/>
+      <input name="userId" type='text' placeholder='User Id' 
+      value={this.state.userId} onChange={e => this.handleChange(e)} 
+      />
+      <br/>
+      <br/>
+      <input name="street" type='text' placeholder='Street' value={this.state.street} onChange={e => this.handleChange(e)}/>
+      <br/>
+      <br/>
+      <input name="city" type='text' placeholder='City' value={this.state.city} onChange={e => this.handleChange(e)} />
+      <input name="state" type='text' placeholder='State' value={this.state.state} onChange={e => this.handleChange(e)} />
+      <input name="zip" type='number' placeholder='Zip' value={this.state.zip} onChange={e => this.handleChange(e)} />
+    </div>
+  </form>   */}
+  <StripeCheckout
+    token={onToken}
+    stripeKey="pk_test_6ccXGhoG0iWvSP7OcPSbRFuj"
+  />
   </Wrapper>
  );
 

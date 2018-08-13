@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
+/**
+ * Component imports
+ */
 import Order from '../../components/order';
+
+/**
+ * Action imports
+ */
+import { getUser } from '../../actions/account-actions';
 
 class OdrderContainer extends Component {
   constructor() {
@@ -18,24 +26,10 @@ class OdrderContainer extends Component {
   };
 
   componentDidMount() {
-    // axios.get('/api/address')
-    //      .then((res) => {
-    //       const address = res.data.address;
-
-    //       this.setState({ address });
-
-    //       this.props.updateUserAddress(res.data);
-    // })
+    const { loadUser } = this.props;
+    // TODO: Update user ID with actual ID.
+    loadUser(1);
   };
-
-  // deleteUser = (id) => {
-  //   axios.delete(`/api/user/${id}`, { id })
-  //        .then(res => {
-  //         const user = res.data.user;
-  //         this.setState({ user }); 
-  //     });
-  // };
-
 
   handleChange = (e) => {
     this.setState({
@@ -68,44 +62,31 @@ class OdrderContainer extends Component {
        console.log(err, 'error from backend after axios call');
      });
   };
+
+  onToken = () => {
+    // something
+  }
     
   render() {
-    return (
-      <div>
-      <Order />
+    const { user, userLoaded } = this.props;
 
-        User: {this.state.userId} <br/>
-        Street: {this.state.street} <br/>
-        City: {this.state.city}<br/>
-        State: {this.state.state}<br/>
-        Zip: {this.state.zip} <br/>
-
-      <form onSubmit={e => this.handleSubmit(e)}>  
-        <div className="inputBox">
-          <br/>
-          <input name="userId" type='text' placeholder='User Id' 
-          value={this.state.userId} onChange={e => this.handleChange(e)} 
-          />
-          <br/>
-          <br/>
-          <input name="street" type='text' placeholder='Street' value={this.state.street} onChange={e => this.handleChange(e)}/>
-          <br/>
-          <br/>
-          <input name="city" type='text' placeholder='City' value={this.state.city} onChange={e => this.handleChange(e)} />
-          <input name="state" type='text' placeholder='State' value={this.state.state} onChange={e => this.handleChange(e)} />
-          <input name="zip" type='number' placeholder='Zip' value={this.state.zip} onChange={e => this.handleChange(e)} />
-        </div>
-      </form>        
-      </div>
-    );
+    if (!userLoaded) {
+      return (<p>Loading...please wait!</p>)
+    } else {
+      return (
+        <Order onToken={this.onToken} user={user} />
+      );
+    };
   }
 };
 
-function mapStateToProps(state) {
-  return {
-    address: state.address
-  }
-}
+const mapStateToProps = state => ({
+  userLoaded: state.AccountReducer.user.loaded,
+  user: state.AccountReducer.user.results.data,
+});
 
-// export default connect(mapStateToProps, {updateUserAddress})(OdrderContainer);
-export default OdrderContainer;
+const mapDispatchToProps = dispatch => ({
+  loadUser: id => dispatch(getUser(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OdrderContainer);
