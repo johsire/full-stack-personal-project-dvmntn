@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const PriceContainer = styled.div`
  width: 600px;
- height: 240px;
+ min-height: 320px;
  margin: 50px auto 25px;
  display: flex;
  justify-content: space-between;
@@ -61,26 +61,11 @@ export const GalleryBanner = styled.div`
  background-color: orange; 
 `;
 
-export const ImageOne = styled.div`
- width: 25%
- height: 100%
- background-color: grey; 
-`;
-
-export const ImageTwo = styled.div`
- width: 25%
- height: 100%
- background-color: green; 
-`;
-
-export const ImageThree = styled.div`
- width: 25%
- height: 100%
- background-color: black; 
-`;
-
-export const ImageFour = styled.div`
- width: 25%
- height: 100%
- background-color: grey; 
+export const ImageWrapper = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  display: block;
+  margin: 0 auto;
 `;

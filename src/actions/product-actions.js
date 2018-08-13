@@ -2,9 +2,8 @@ import * as constants from '../constants/product-constants';
 import { performGet } from '../utilities/api-helpers';
 import { API_URL, UNSPLASH_URL } from '../constants';
 
-require('dotenv').config();
 
-const { UNSPLASH_ACCESS_KEY } = process.env;
+const UNSPLASH_ACCESS_KEY = '4bbb36ca58e2743df2f6e75f65394c4f2fba5ac5045cf8cb1034168ee1f1fd19';
 
 // ACTION CREATORS
 export const getProducts = () => async (dispatch) => {
