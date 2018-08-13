@@ -10,23 +10,24 @@ import Product from '../../components/product';
 /**
  * Action imports
  */
-import { getProducts } from '../../actions/product-actions';
+import { getProducts, getUnsplashPhotos } from '../../actions/product-actions';
 
 class ProductContainer extends Component {
 
   componentDidMount() {
-    const { loadProducts } = this.props;
+    const { loadProducts, loadUnsplashPhotos } = this.props;
     loadProducts();
+    loadUnsplashPhotos();
   };
 
  render() {
-  const { productsLoaded, products } = this.props;
+  const { productsLoaded, products, unsplashPhotosLoaded, unsplashPhotos } = this.props;
 
-  if (!productsLoaded) {
+  if (!productsLoaded || !unsplashPhotosLoaded) {
     return <p>Fetching data...</p>;
   } else {
     return (
-     <Product products={products} />
+     <Product products={products} photos={unsplashPhotos} />
     );
    }
  }
@@ -35,10 +36,13 @@ class ProductContainer extends Component {
 const mapStateToProps = state => ({
   productsLoaded: state.ProductsReducer.products.loaded,
   products: state.ProductsReducer.products.results.data,
+  unsplashPhotosLoaded: state.ProductsReducer.unsplashPhotos.loaded,
+  unsplashPhotos: state.ProductsReducer.unsplashPhotos.results.results,
 });
 
 const mapDispatchToProps = dispatch => ({
   loadProducts: () => dispatch(getProducts()),
+  loadUnsplashPhotos: () => dispatch(getUnsplashPhotos()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);
