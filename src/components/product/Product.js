@@ -4,6 +4,7 @@ import React from 'react';
  * Component Imports
  */
 import Header from '../header';
+import CheckoutButton from '../../containers/order';
 
 /**
  * Style imports
@@ -23,7 +24,8 @@ const Product = ({ products, photos }) => {
             <Title>{product.title}</Title>
             <ImageWrapper src={photos[index].urls.small} />
             <Description>{product.description}</Description>
-            <Price>{product.price}</Price>
+            <Price>${product.price}</Price>
+            <CheckoutButton amount={product.price} />
           </ItemContainer>
         )
       })

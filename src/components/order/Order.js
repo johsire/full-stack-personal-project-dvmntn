@@ -12,32 +12,30 @@ import Header from '../header';
 
 import { Wrapper } from './styles';
 
-const Order = ({ onToken, stripePK }) => (
-  <Wrapper>
-  <Header />
-  {/* <form onSubmit={e => this.handleSubmit(e)}>  
-    <div className="inputBox">
-      <br/>
-      <input name="userId" type='text' placeholder='User Id' 
-      value={this.state.userId} onChange={e => this.handleChange(e)} 
-      />
-      <br/>
-      <br/>
-      <input name="street" type='text' placeholder='Street' value={this.state.street} onChange={e => this.handleChange(e)}/>
-      <br/>
-      <br/>
-      <input name="city" type='text' placeholder='City' value={this.state.city} onChange={e => this.handleChange(e)} />
-      <input name="state" type='text' placeholder='State' value={this.state.state} onChange={e => this.handleChange(e)} />
-      <input name="zip" type='number' placeholder='Zip' value={this.state.zip} onChange={e => this.handleChange(e)} />
-    </div>
-  </form>   */}
+const Order = ({ onToken, stripePK, amount }) => (
   <StripeCheckout
-    token={onToken(3999)}
+    token={onToken(amount)}
     stripeKey={stripePK}
-    amount={3999}
+    amount={amount}
   />
-  </Wrapper>
  );
 
 
 export default Order;
+
+{/* <form onSubmit={e => this.handleSubmit(e)}>  
+<div className="inputBox">
+<br/>
+<input name="userId" type='text' placeholder='User Id' 
+value={this.state.userId} onChange={e => this.handleChange(e)} 
+/>
+<br/>
+<br/>
+<input name="street" type='text' placeholder='Street' value={this.state.street} onChange={e => this.handleChange(e)}/>
+<br/>
+<br/>
+<input name="city" type='text' placeholder='City' value={this.state.city} onChange={e => this.handleChange(e)} />
+<input name="state" type='text' placeholder='State' value={this.state.state} onChange={e => this.handleChange(e)} />
+<input name="zip" type='number' placeholder='Zip' value={this.state.zip} onChange={e => this.handleChange(e)} />
+</div>
+</form>   */}

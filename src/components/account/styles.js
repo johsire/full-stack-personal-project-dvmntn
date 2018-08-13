@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  padding-bottom: 40px;
   color: white;
   padding: 20px 0 0 20px;
   background: #f953c6;  /* fallback for old browsers */

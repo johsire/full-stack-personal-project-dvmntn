@@ -33,51 +33,6 @@ class OdrderContainer extends Component {
     loadUser(1);
   };
 
-  // handleChange = (e) => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   });
-  // };
-
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const data = {
-  //     UserId: this.state.userId,
-  //     Street: this.state.street,
-  //     city: this.state.city,
-  //     state: this.state.state,
-  //     zip: this.state.zip
-  //   }
-    
-  //   axios.post('api/address', data)
-  //     .then(res => {
-  //       this.setState({
-  //         userId: '',
-  //         street: '',
-  //         city: '',
-  //         state: '',
-  //         zip: 0,
-  //       })
-  //    })
-  //    .catch(err => {
-  //      console.log(err, 'error from backend after axios call');
-  //    });
-  // };
-
-  // onToken = () => {
-  //   const token = 'sk_test_uM8jNLDUHoYXG0Vh1IHR5WY2'
-  //   fetch(`${API_URL}/api/order`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(token),
-  //   }).then(response => {
-  //     console.log(response, 'TOKEN STUFF RESPONSE');
-  //     response.json().then(data => {
-  //       alert(`We are in business, ${data.email}`);
-  //     });
-  //   });
-  // }
-
   successPayment = data => {
     console.log(data, 'SUCCESSFULLY PAID');
     alert('Payment Successful');
@@ -104,13 +59,15 @@ class OdrderContainer extends Component {
     }
     
   render() {
-    const { user, userLoaded } = this.props;
+    const { user, userLoaded, amount } = this.props;
+
+    const stripeConversion = (amount * 100);
 
     if (!userLoaded) {
       return (<p>Loading...please wait!</p>)
     } else {
       return (
-        <Order onToken={this.onToken} user={user} stripePK="pk_test_6ccXGhoG0iWvSP7OcPSbRFuj" />
+        <Order onToken={this.onToken} user={user} stripePK="pk_test_6ccXGhoG0iWvSP7OcPSbRFuj" amount={stripeConversion} />
       );
     };
   }

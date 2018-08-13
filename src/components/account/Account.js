@@ -21,9 +21,9 @@ const Account = ({ user, orders, products, mapOdersToProducts }) => (
         const product = mapOdersToProducts(item.product_id, products);
         return(
           <Fragment key={item.id}>
-            <p>Order ID: {item.id}</p>
-            <p>{product.title}</p>
-            <p>{product.price}</p>
+            <p>Order # {item.id}: Avacado Toast delivered {product.title} for {product.price}</p>
+            <p>Transaction #: {item.stripe_id}</p>
+            <p>Status: {item.status}</p>
             <hr />
           </Fragment>
         )

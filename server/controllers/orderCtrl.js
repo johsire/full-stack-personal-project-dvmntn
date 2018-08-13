@@ -14,11 +14,20 @@ module.exports = {
     description,
   }, (err, charge) => {
     console.log(charge, '<===== XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX THIS IS THE CHARGE OBJECT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    // asynchronously called
-    db.create_order([1, 2])
+
+    const stripe_id =  charge.id;
+    const status =  charge.outcome.seller_message;
+    const order_email =  charge.source.name;
+    const street =  charge.source.address_line1;
+    const city =  charge.source.address_city;
+    const state =  charge.source.address_state;
+    const zip =  charge.source.address_zip;
+
+    // TODO: Remove hardcoded values of user and product_id
+    db.create_order([1, 2, stripe_id, status, order_email])
     .then(data => {
       res.status(200).json({
-      order: data,
+      data: data[0],
      })
     })
     .catch(err => {
