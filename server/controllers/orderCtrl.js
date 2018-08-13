@@ -8,14 +8,14 @@ module.exports = {
   console.log('CREATE ORDER IS BEING CALED');
 
   stripe.charges.create({
-    amount: amount,
-    currency: currency,
-    source: source, // obtained with Stripe.js
-    description: `<---- Charge for ${email}`
+    amount,
+    currency,
+    source, // obtained with Stripe.js
+    description,
   }, (err, charge) => {
-    console.log(charge, 'THIS IS THE CHARGE OBJECT');
+    console.log(charge, '<===== XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX THIS IS THE CHARGE OBJECT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     // asynchronously called
-    db.create_order([user_id, product_id])
+    db.create_order([1, 2])
     .then(data => {
       res.status(200).json({
       order: data,

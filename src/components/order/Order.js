@@ -32,9 +32,9 @@ const Order = ({ onToken, stripePK }) => (
     </div>
   </form>   */}
   <StripeCheckout
-    token={onToken}
+    token={onToken(3999)}
     stripeKey={stripePK}
-    amount={20000}
+    amount={3999}
   />
   </Wrapper>
  );

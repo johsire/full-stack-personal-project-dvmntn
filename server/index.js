@@ -4,6 +4,7 @@ session = require('express-session');
 axios = require('axios');
 massive = require('massive');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 const orderCtrl = require ('./controllers/orderCtrl');
@@ -13,8 +14,14 @@ const productCtrl = require('./controllers/productCtrl');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 const {
  SERVER_PORT,

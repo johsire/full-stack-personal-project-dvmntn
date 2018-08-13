@@ -83,24 +83,24 @@ class OdrderContainer extends Component {
     alert('Payment Successful');
   };
   
-  errorPayment = data => {
-    console.log(data, 'UNSUCCESSFUL PAID');
+  errorPayment = error => {
+    console.log(error.resonse, 'UNSUCCESSFUL PAID');
     alert('Payment Error');
   };
   
-  onToken = async token => {
+  onToken = amount => token => {
     console.log(token, 'IN ON TOKEN ABOUT TO CHARGE');
-    const { chargePayment } = this.props;
+    // const { chargePayment } = this.props;
     const data = {
       description: 'Test payment from app!',
       source: token.id,
       currency: 'USD',
-      amount: 1000
+      amount: amount
     };
 
-    const res = await chargePayment(data)
-      this.successPayment(res);
-      this.errorPayment(res);
+    axios.post('http://localhost:5050/api/order', data)
+      .then(this.successPayment)
+      .catch(this.errorPayment)
     }
     
   render() {
