@@ -36,21 +36,21 @@ class Header extends Component {
     return (
       <HeaderWrapper>
       <Link to="/">
-       <Logo>#AvaocadoToastLife</Logo>
+       <Logo>#AvocadoToastLife</Logo>
       </Link>
      <Navigation>
        <Link to="/products">
          <Menu>Products</Menu>
        </Link>
-       <Link to="/order">
+       {/* <Link to="/order">
          <Menu>Order</Menu>
-       </Link>
-       {isLoggedIn && (
+       </Link> */}
+       {/* {isLoggedIn && ( */}
          <Link to="/account">
            <Menu>Account</Menu>
        </Link>
        )}
-       {!isLoggedIn && <Menu onClick={() => authenticateAuth0()}>Login</Menu>}
+       {/* {!isLoggedIn && <Menu onClick={() => authenticateAuth0()}>Login</Menu>} */}
       </Navigation>
     </HeaderWrapper>
     );

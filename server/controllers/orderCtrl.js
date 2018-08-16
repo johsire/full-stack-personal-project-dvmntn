@@ -5,7 +5,7 @@ module.exports = {
   const db = req.app.get('db');
   // const { user_id, product_id, amount, email } = req.body;
   const { amount, currency, source, description } = req.body;
-  console.log('CREATE ORDER IS BEING CALED');
+  console.log('CREATE ORDER IS BEING CALLED');
 
   stripe.charges.create({
     amount,
@@ -87,11 +87,12 @@ getUserOrders: (req, res) => {
 
  deleteOrder: (req, res) => {
    const db = req.app.get('db');
-   const id = req.params.id;
+  //  const id = req.params.id;
 
-   db.delete_order([id])
-   .then(() => res.status(200))
+   db.delete_order([req.params.id])
+   .then(() => res.sendStatus(200))
    .catch(err => {
+     console.log(err)
     res.status(500).json({ error: err, errorMessage: "Something went wrong in the server" })
    })
   } 

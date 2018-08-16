@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
- width: 98%;
- height: 30px;
- ${'' /* background-color: gray; */}
- color: white;
- display: flex;
+  width: 98%;
+  height: 30px;
+  ${'' /* background-color: gray; */}
+  color: white;
+  display: flex;
+  padding: 0 20px;
   justify-content: space-between;
+  .sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
 `;
 
 export const Logo = styled.h1`
@@ -15,6 +22,8 @@ export const Logo = styled.h1`
   margin-top: 0;
   font-family: 'Nunito';
   text-decoration: none;
+  @media (max-width: 450px) {
+    font-size: 14px;
 `;
 
 
@@ -35,4 +44,10 @@ export const Menu = styled.li`
   letter-spacing: 1.5px;
   text-decoration: none;
   color: #8dc63f;
+  .sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
 `;

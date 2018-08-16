@@ -13,7 +13,7 @@ import CheckoutButton from '../../containers/order';
 import { Wrapper, PriceContainer, ItemContainer, Title, Description, Price, ImageWrapper } from './styles';
 
 const Product = ({ products, photos }) => {
-  return (
+  return ( 
   <Wrapper>
     <Header />
     <PriceContainer>
@@ -25,7 +25,7 @@ const Product = ({ products, photos }) => {
             <ImageWrapper src={photos[index].urls.small} />
             <Description>{product.description}</Description>
             <Price>${product.price}</Price>
-            <CheckoutButton amount={product.price} />
+            <CheckoutButton amount={product.price} ComponentClass="div" shippingAddress={true} />
           </ItemContainer>
         )
       })

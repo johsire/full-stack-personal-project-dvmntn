@@ -1,3 +1,6 @@
+
+const path = require('path'); // Usually moved to the start of file
+
 require('dotenv').config();
 const express = require('express');
 session = require('express-session');
@@ -14,6 +17,8 @@ const productCtrl = require('./controllers/productCtrl');
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,7 +29,8 @@ const {
  REACT_APP_CLIENT_ID,
  CLIENT_SECRET,
  SESSION_SECRET,
- CONNECTION_STRING
+ CONNECTION_STRING,
+ LOCAL_HOST
 } = process.env;
 
 
@@ -88,7 +94,7 @@ app.get('/auth/callback', async (req, res) => {
 
 app.get('/api/logout', (req, res) => {
  req.session.destroy();
- res.redirect('http://localhost:3000');
+ res.redirect(LOCAL_HOST);
 });
 
 // USER API Endpoints
@@ -110,6 +116,10 @@ app.get('/api/user/addresses/:id', addressCtrl.getUserAddresses);
 
 // PRODUCTS API Endpoints
 app.get('/api/products', productCtrl.getProducts);
+
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(SERVER_PORT, () => {
  console.log(`W.Ferrell Crashing Weddings on Port: ${SERVER_PORT}`);

@@ -1,6 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
+
 /**
  * Component Imports
  */
@@ -9,18 +10,21 @@ import Header from '../header';
 /**
  * Style imports
  */
-
 import { Wrapper } from './styles';
+
 
 const Order = ({ onToken, stripePK, amount }) => (
   <StripeCheckout
     token={onToken(amount)}
     stripeKey={stripePK}
     amount={amount}
-  />
+    shippingAddress
+    billingAddress={true}
+   />
+
+
  );
-
-
+ 
 export default Order;
 
 {/* <form onSubmit={e => this.handleSubmit(e)}>  

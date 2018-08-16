@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
+
 
 /**
  * Component imports
@@ -13,12 +15,24 @@ import { getUser, getUserOrders } from '../../actions/account-actions';
 import { getProducts } from '../../actions/product-actions';
 
 class AccountContainer extends Component {
+  constructor() {
+    super();
 
+    this.state = {
+      order: [],
+      id: 0,
+    }
+    this.UpdateOrder = this.UpdateOrder.bind(this); 
+    this.deleteOrder = this.deleteOrder.bind(this);
+  }
+  
   componentDidMount() {
-    const { loadUser, loadUserOrders, loadProducts } = this.props;
+    const { loadUser, loadUserOrders, loadProducts, UpdateOrder, deleteOrder } = this.props;
     loadUser(1);
     loadUserOrders(1);
     loadProducts();
+    // UpdateOrder();
+    // deleteOrder();
   };
 
   // This is to help us match orders with specific products
@@ -30,7 +44,26 @@ class AccountContainer extends Component {
       };
     })
     return product;
-  }
+  };
+
+  UpdateOrder = (product_id, id) => {
+    axios.put(`/api/order/${id}`, { id, product_id }).then(res => {
+     this.setState({
+        orders: res.data
+      })
+    })
+  };
+
+  deleteOrder = (id) => {
+    // this.componentDidMount();
+    axios.delete(`/api/order/${this.state.id}`).then(() => {
+    //   console.log(res.data);
+    //  this.setState({
+    //     orders: res.data
+      // })
+    })
+  };
+
 
  render() {
    const { orders, user, userLoaded, ordersLoaded, productsLoaded, products } = this.props;
@@ -39,7 +72,16 @@ class AccountContainer extends Component {
      return <p>Fetching data...</p>;
    } else {
      return (
-      <Account orders={orders} user={user} products={products} mapOdersToProducts={this.mapOdersToProducts} />
+    <Fragment>
+      <Account 
+        orders={orders} 
+        user={user} 
+        products={products} 
+        mapOdersToProducts={this.mapOdersToProducts} 
+        UpdateOrder={this.UpdateOrder} 
+        deleteOrder={this.deleteOrder}
+      />
+    </Fragment>
      );
    }
  }

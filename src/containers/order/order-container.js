@@ -15,17 +15,6 @@ import { getUser } from '../../actions/account-actions';
 import { chargeOrder } from '../../actions/order-actions';
 
 class OdrderContainer extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      userId: '',
-      street: '',
-      city: '',
-      state: '',
-      zip: 0,
-    }
-  };
 
   componentDidMount() {
     const { loadUser } = this.props;
@@ -47,7 +36,7 @@ class OdrderContainer extends Component {
     console.log(token, 'IN ON TOKEN ABOUT TO CHARGE');
     // const { chargePayment } = this.props;
     const data = {
-      description: 'Test payment from app!',
+      description: 'Order payment from app!',
       source: token.id,
       currency: 'USD',
       amount: amount
