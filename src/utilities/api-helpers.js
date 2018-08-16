@@ -101,3 +101,29 @@ export const performParamsGet = async (
     dispatch(errorAction(e));
   }
 };
+
+/**
+ * Performs a request with `delete` http method.
+ */
+export const performDelete = async (
+  dispatch,
+  url,
+  requestOptions,
+  body,
+  actionBase,
+) => {
+  const startAction = createAction(`${actionBase}:DELETE_START`);
+  const successAction = createAction(`${actionBase}:DELETE_SUCCESS`);
+  const errorAction = createAction(`${actionBase}:DELETE_ERROR`);
+  dispatch(startAction());
+  try {
+    const res = await axios.delete(url, body, {
+      ...requestOptions,
+      withCredentials: true,
+      // headers: { 'Access-Token': getToken('ACCESS_TOKEN') },
+    });
+    dispatch(successAction(res.data));
+  } catch (e) {
+    dispatch(errorAction(e));
+  }
+};

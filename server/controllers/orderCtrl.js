@@ -90,7 +90,7 @@ getUserOrders: (req, res) => {
    const id = req.params.id;
 
    db.delete_order([id])
-   .then(() => res.sendStatus(200))
+   .then(() => res.status(200))
    .catch(err => {
      console.log(err)
     res.status(500).json({ error: err, errorMessage: "Something went wrong in the server" })

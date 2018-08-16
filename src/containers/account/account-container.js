@@ -11,7 +11,7 @@ import Account from '../../components/account';
 /**
  * Action imports
  */
-import { getUser, getUserOrders } from '../../actions/account-actions';
+import { getUser, getUserOrders, deleteUserOrder, updateUserOrder } from '../../actions/account-actions';
 import { getProducts } from '../../actions/product-actions';
 
 class AccountContainer extends Component {
@@ -21,17 +21,17 @@ class AccountContainer extends Component {
     this.state = {
       order: [],
     }
-    this.UpdateOrder = this.UpdateOrder.bind(this); 
-    this.deleteOrder = this.deleteOrder.bind(this);
+    this.updateUserOrder = this.updateUserOrder.bind(this); 
+    this.deleteUserOrder = this.deleteUserOrder.bind(this);
   }
   
   componentDidMount() {
-    const { loadUser, loadUserOrders, loadProducts, UpdateOrder, deleteOrder } = this.props;
+    const { loadUser, loadUserOrders, loadProducts, updateUserOrder, deleteUserOrder } = this.props;
     loadUser(1);
     loadUserOrders(1);
     loadProducts();
-    // UpdateOrder();
-    // deleteOrder();
+    updateUserOrder();
+    deleteUserOrder();
   };
 
   // This is to help us match orders with specific products
@@ -45,27 +45,25 @@ class AccountContainer extends Component {
     return product;
   };
 
-  UpdateOrder = (product_id, id) => {
-    axios.put(`/api/order/${id}`, { id, product_id }).then(res => {
-     this.setState({
-        orders: res.data
+  updateUserOrder = (product_id, id) => {
+    axios.put(`/api/order/${id}`,{ product_id, id })
+         .then(res => {
+           this.setState({
+             orders: res.data,
+           })
       })
-    })
   };
 
-  deleteOrder = (id) => {
-    // this.componentDidMount();
-    axios.delete(`/api/order/${item.id}`).then(() => {
-    //   console.log(res.data);
-    //  this.setState({
-    //     orders: res.data
-      // })
+
+  deleteUserOrder = (id) => {
+    axios.delete(`/api/order/${id}`, {id}).then(res => {
+      this.status(200);
     })
   };
 
 
  render() {
-   const { orders, user, userLoaded, ordersLoaded, productsLoaded, products, UpdateOrder, deleteOrder } = this.props;
+   const { orders, user, userLoaded, ordersLoaded, productsLoaded, products } = this.props;
 
    if (!userLoaded || !ordersLoaded || !productsLoaded) {
      return <p>Fetching data...</p>;
@@ -77,8 +75,9 @@ class AccountContainer extends Component {
         user={user} 
         products={products} 
         mapOdersToProducts={this.mapOdersToProducts} 
-        UpdateOrder={this.UpdateOrder} 
-        deleteOrder={this.deleteOrder}
+        updateUserOrder={this.updateUserOrder} 
+        deleteUserOrder={this.deleteUserOrder}
+        orders={this.item.id}
       />
     </Fragment>
      );
