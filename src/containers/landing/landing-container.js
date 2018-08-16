@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Landing from '../../components/landing';
 import axios from 'axios';
 
-const WEATHER_API = 
-const API_KEY=
+const WEATHER_API = 'https://api.openweathermap.org/data/2.5/weather?q='
+const API_KEY='5479e7265cf0c889f4b4cd556166043a'
 
 class LandingContainer extends Component {
 
