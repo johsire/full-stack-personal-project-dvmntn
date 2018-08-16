@@ -20,7 +20,6 @@ class AccountContainer extends Component {
 
     this.state = {
       order: [],
-      id: 0,
     }
     this.UpdateOrder = this.UpdateOrder.bind(this); 
     this.deleteOrder = this.deleteOrder.bind(this);
@@ -56,7 +55,7 @@ class AccountContainer extends Component {
 
   deleteOrder = (id) => {
     // this.componentDidMount();
-    axios.delete(`/api/order/${this.state.id}`).then(() => {
+    axios.delete(`/api/order/${item.id}`).then(() => {
     //   console.log(res.data);
     //  this.setState({
     //     orders: res.data
@@ -66,7 +65,7 @@ class AccountContainer extends Component {
 
 
  render() {
-   const { orders, user, userLoaded, ordersLoaded, productsLoaded, products } = this.props;
+   const { orders, user, userLoaded, ordersLoaded, productsLoaded, products, UpdateOrder, deleteOrder } = this.props;
 
    if (!userLoaded || !ordersLoaded || !productsLoaded) {
      return <p>Fetching data...</p>;

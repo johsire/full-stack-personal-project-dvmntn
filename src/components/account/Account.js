@@ -11,7 +11,7 @@ import Header from '../header';
 
 import { Wrapper, ImageWrapper } from './styles';
 
-const Account = ({ user, orders, products, mapOdersToProducts, UpdateOrder, product_id, id, deleteOrder  }, props) => (
+const Account = ({ user, orders, products, mapOdersToProducts, UpdateOrder, product_id, deleteOrder  }) => (
   <Wrapper>
     <Header />
       Hi, {user.user_name}
@@ -26,7 +26,8 @@ const Account = ({ user, orders, products, mapOdersToProducts, UpdateOrder, prod
             <p>Transaction #: {item.stripe_id}</p>
             <p>Status: {item.status}</p>
             <br/>
-            <button onClick={() => UpdateOrder(product_id, orders.id)}>Update my Order</button>  |  <button onClick={() => deleteOrder(orders.id)}>Delete my Order</button>          
+            <button onClick={() => UpdateOrder(product_id, item.id)}>Update my Order</button>  |  
+            <button onClick={() => deleteOrder(item.id)}>Delete my Order</button>          
             <hr />
           </Fragment>
         )

@@ -87,9 +87,9 @@ getUserOrders: (req, res) => {
 
  deleteOrder: (req, res) => {
    const db = req.app.get('db');
-  //  const id = req.params.id;
+   const id = req.params.id;
 
-   db.delete_order([req.params.id])
+   db.delete_order([id])
    .then(() => res.sendStatus(200))
    .catch(err => {
      console.log(err)
