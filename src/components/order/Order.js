@@ -27,7 +27,7 @@ const Order = ({ onToken, stripePK, amount }) => (
  
 export default Order;
 
-{/* <form onSubmit={e => this.handleSubmit(e)}>  
+/* <form onSubmit={e => this.handleSubmit(e)}>  
 <div className="inputBox">
 <br/>
 <input name="userId" type='text' placeholder='User Id' 
@@ -42,4 +42,4 @@ value={this.state.userId} onChange={e => this.handleChange(e)}
 <input name="state" type='text' placeholder='State' value={this.state.state} onChange={e => this.handleChange(e)} />
 <input name="zip" type='number' placeholder='Zip' value={this.state.zip} onChange={e => this.handleChange(e)} />
 </div>
-</form>   */}
+</form>   */

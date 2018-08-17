@@ -49,7 +49,7 @@ class Header extends Component {
          <Link to="/account">
            <Menu>Account</Menu>
        </Link>
-       )}
+       {/* )} */}
        {/* {!isLoggedIn && <Menu onClick={() => authenticateAuth0()}>Login</Menu>} */}
       </Navigation>
     </HeaderWrapper>

@@ -5,9 +5,30 @@ export const Wrapper = styled.div`
   height: 100vh;
   color: black;
   padding: 20px 0 0 0;
-  background: #C6FFDD;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: /* IE10+ */ 
+            background-image: -ms-linear-gradient(left, rgb(13,255,0) 0%, rgb(255,255,0) 50%, rgb(255,0,0) 100%);
+
+            /* Mozilla Firefox */ 
+            background-image: -moz-linear-gradient(left, rgb(13,255,0) 0%, rgb(255,255,0) 50%, rgb(255,0,0) 100%);
+
+            /* Opera */ 
+            background-image: -o-linear-gradient(left, rgb(13,255,0) 0%, rgb(255,255,0) 50%, rgb(255,0,0) 100%);
+
+            /* Webkit (Safari/Chrome 10) */ 
+            background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgb(13,255,0)), color-stop(50, rgb(255,255,0)), color-stop(100, rgb(255,0,0)));
+
+            /* Webkit (Chrome 11+) */ 
+            background-image: -webkit-linear-gradient(left, rgb(13,255,0) 0%, rgb(255,255,0) 50%, rgb(255,0,0) 100%);
+
+            /* W3C Markup */ 
+            background-image: linear-gradient(to right, rgb(13,255,0) 0%, rgb(255,255,0) 50%, rgb(255,0,0) 100%);
+  
+  /* background: #C6FFDD;   */
+  /* fallback for old browsers */
+  /* background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  
+  /* Chrome 10-25, Safari 5.1-6 */
+  /* background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); 
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   top: 0;
   bottom:0;
   position:fixed;
