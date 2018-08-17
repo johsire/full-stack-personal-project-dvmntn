@@ -30,8 +30,8 @@ class AccountContainer extends Component {
     loadUser(1);
     loadUserOrders(1);
     loadProducts();
-    updateUserOrder();
-    deleteUserOrder();
+    // updateUserOrder();
+    // deleteUserOrder();
   };
 
   // This is to help us match orders with specific products
@@ -56,16 +56,16 @@ class AccountContainer extends Component {
 
 
   deleteUserOrder = (id) => {
-    axios.delete(`/api/order/${id}`, {id}).then(res => {
+    axios.delete(`/api/order/${id}`, {id: id}).then(res => {
       this.status(200);
     })
   };
 
 
  render() {
-   const { orders, user, userLoaded, ordersLoaded, productsLoaded, products } = this.props;
+   const { orders, user, userLoaded, ordersLoaded, productsLoaded, products, updateUserOrderLoaded, deleteUserOrderLoaded, updateUserOrder, deleteUserOrder } = this.props;
 
-   if (!userLoaded || !ordersLoaded || !productsLoaded) {
+   if (!userLoaded || !ordersLoaded || !productsLoaded || !updateUserOrderLoaded || !deleteUserOrderLoaded) {
      return <p>Fetching data...</p>;
    } else {
      return (
@@ -77,7 +77,6 @@ class AccountContainer extends Component {
         mapOdersToProducts={this.mapOdersToProducts} 
         updateUserOrder={this.updateUserOrder} 
         deleteUserOrder={this.deleteUserOrder}
-        orders={this.item.id}
       />
     </Fragment>
      );
@@ -94,12 +93,21 @@ const mapStateToProps = state => ({
   
   productsLoaded: state.ProductsReducer.products.loaded,
   products: state.ProductsReducer.products.results.data,
+
+  updateUserOrderLoaded: state.AccountReducer.orders.loaded,
+  updateUserOrder: state.AccountReducer.orders.results.data,
+  
+  deleteUserOrderLoaded: state.AccountReducer.orders.loaded,  
+  deleteUserOrder: state.AccountReducer.orders.results.data,
+
 });
 
 const mapDispatchToProps = dispatch => ({
   loadUser: id => dispatch(getUser(id)),
   loadUserOrders: id => dispatch(getUserOrders(id)),
   loadProducts: () => dispatch(getProducts()),
+  loadUpdateUserOrder: id => dispatch(updateUserOrder(id)),
+  loadDeleteUserOrder: id => dispatch(deleteUserOrder(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountContainer);

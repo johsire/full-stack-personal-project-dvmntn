@@ -12,11 +12,11 @@ export const getUserOrders = (id) => async (dispatch) => {
 };
 
 export const updateUserOrder = (product_id, id) => async (dispatch) => {
-  return performPut(dispatch, `/api/order/${product_id, id}`, {}, id, constants.UPDATE_ORDER)
+  return performPut(dispatch, `/api/order/${product_id, id}`, {}, id, constants.UPDATE_USER_ORDER)
 };
 
 export const deleteUserOrder = (id) => async (dispatch) => {
-  return performDelete(dispatch, `/api/order/${id}`, {}, id, constants.DELETE_ORDER)
+  return performDelete(dispatch, `/api/order/${id}`, {}, id, constants.DELETE_USER_ORDER)
 };
 
 // updateOrder

@@ -11,14 +11,15 @@ import Header from '../header';
 
 import { Wrapper, ImageWrapper } from './styles';
 
-const Account = ({ user, orders, products, mapOdersToProducts, UpdateOrder, product_id, deleteOrder  }) => (
+const Account = ({ user, orders, products, mapOdersToProducts, updateUserOrder, deleteUserOrder, product_id, id  }) => (
   <Wrapper>
     <Header />
       Hi, {user.user_name}
       <ImageWrapper src={user.picture} alt={user.user_name} />
       {orders.map(item => {
+        {/* console.log(item, 'this is our item <===================XXXXXXXXXXXXXXXXXXXXXXXXXXX'); */}
         // Let's get the product that matches the one
-        const product = mapOdersToProducts(item.product_id, products);
+        const product = mapOdersToProducts(product_id, products);
         return(
           <Fragment key={item.id}>
             <p>Order # {item.id}:</p>
@@ -26,8 +27,8 @@ const Account = ({ user, orders, products, mapOdersToProducts, UpdateOrder, prod
             <p>Transaction #: {item.stripe_id}</p>
             <p>Status: {item.status}</p>
             <br/>
-            <button onClick={() => UpdateOrder(product_id, item.id)}>Update my Order</button>  |  
-            <button onClick={() => deleteOrder(item.id)}>Delete my Order</button>          
+            <button type="button" onClick={() => updateUserOrder(product_id, item.id)}>Update Order</button>  |  
+            <button type="button" onClick={() => deleteUserOrder(item.id)}>Delete Order</button>          
             <hr />
           </Fragment>
         )
