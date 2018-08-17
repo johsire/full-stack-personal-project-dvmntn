@@ -37,6 +37,20 @@ export default handleActions(
         orders: { results: { ...payload }, loaded: true },
       };
     },
+     // UPDATE_USER_ORDER:GET_SUCCESS
+     [`${constants.UPDATE_USER_ORDER}:GET_SUCCESS`](state, { payload }) {
+      return {
+        ...state,
+        orders: { results: { ...payload }, loaded: true },
+      };
+    },
+     // DELETE_USER_ORDER:GET_SUCCESS
+     [`${constants.DELETE_USER_ORDER}:GET_SUCCESS`](state, { payload }) {
+      return {
+        ...state,
+        orders: { results: { ...payload }, loaded: true },
+      };
+    },
   },
   initialState,
 );
