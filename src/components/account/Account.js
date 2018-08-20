@@ -28,8 +28,8 @@ const Account = ({ user, orders, products, mapOdersToProducts, updateUserOrder, 
             <p>Status: {item.status}</p>
             <br/>
             <button type="button" onClick={() => updateUserOrder(product_id, item.id)}>Update Order</button>  |      
-            <button type="button" onClick={() => deleteUserOrder(item.id)}>Delete Order</button>  |      
-            <button type="button" onClick={() => getProducts(product_id)}>Add Order</button>          
+            <button type="button" onClick={() => deleteUserOrder(item.id)}>Delete Order</button>    
+
             <hr />
           </Fragment>
         )
