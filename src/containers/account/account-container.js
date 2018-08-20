@@ -7,6 +7,7 @@ import axios from 'axios';
  * Component imports
  */
 import Account from '../../components/account';
+import OrderInstructions from '../../components/order-instructions'
 
 /**
  * Action imports
@@ -35,11 +36,12 @@ class AccountContainer extends Component {
   };
 
   // This is to help us match orders with specific products
-  mapOdersToProducts = (id, products) => {
+  mapOdersToProducts = (product_id, products) => {
     let product = {};
     products.find((item) => {
-      if (item.id === id) {
+      if (item.product_id === product_id) {
         product = item;
+        console.log(item, 'from the account container')
       };
     })
     return product;
@@ -54,13 +56,18 @@ class AccountContainer extends Component {
       })
   };
 
-
   deleteUserOrder = (id) => {
     axios.delete(`/api/order/${id}`, {id: id}).then(res => {
       this.status(200);
     })
   };
 
+  handleChange = (e) => {
+    const { value } = e.target
+    this.setState({
+      comment: value,
+    })
+  }
 
  render() {
    const { orders, user, userLoaded, ordersLoaded, productsLoaded, products, updateUserOrderLoaded, deleteUserOrderLoaded, updateUserOrder, deleteUserOrder } = this.props;
@@ -77,6 +84,7 @@ class AccountContainer extends Component {
         mapOdersToProducts={this.mapOdersToProducts} 
         updateUserOrder={this.updateUserOrder} 
         deleteUserOrder={this.deleteUserOrder}
+        handleChange={this.handleChange}
       />
     </Fragment>
      );
