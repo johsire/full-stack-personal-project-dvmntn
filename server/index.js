@@ -14,6 +14,7 @@ const orderCtrl = require ('./controllers/orderCtrl');
 const addressCtrl = require('./controllers/addressCtrl');
 const userCtrl = require('./controllers/userCtrl');
 const productCtrl = require('./controllers/productCtrl');
+const commentCtrl = require('./controllers/commentCtrl')
 
 const app = express();
 
@@ -117,6 +118,16 @@ app.get('/api/user/addresses/:id', addressCtrl.getUserAddresses);
 // PRODUCTS API Endpoints
 app.get('/api/products', productCtrl.getProducts);
 
+// COMMENTS API Endpoints
+// Create
+// app.post("/api/comment", commentCtrl.createComment);
+
+// // Update a comment
+// app.put("/api/comment/:id", commentCtrl.updateComment);
+
+// // Delete a comment
+// app.delete("/api/comment", commentCtrl.deleteComment);
+
 // join()
 
 app.get('*', (req, res)=>{
@@ -126,10 +137,6 @@ app.get('*', (req, res)=>{
 app.listen(SERVER_PORT, () => {
  console.log(`W.Ferrell Crashing Weddings on Port: ${SERVER_PORT}`);
 });
-
-
-
-
 
 
 

@@ -26,14 +26,13 @@ const Account = ({ user, orders, products, mapOdersToProducts, updateUserOrder, 
             <p>Order # {item.id}:</p>
             <p>Avacado Toast delivered {product.title} fresh for ${product.price}</p>
             <p>Transaction #: {item.stripe_id}</p>
-            {console.log(products, 'XXXXXXXXXXXXXXXXXXXXXX')}
             <p>Status: {item.status}</p>
             <br/>
-            <p>Order Instructions (Optional):</p>
+            {/* <p>Order Instructions (Optional):</p>
             <button type="button" onClick={() => updateUserOrder(product_id, item.id)}>Update Instructions</button>
-            <input id="comment" type="text" name="comment" label="Order Instructions(Optional)" onChange={(e) => handleChange(e)} placeholder="Optional Order Instructions"/> 
+            <input id="comment" type="text" name="comment" onChange={(e) => handleChange(e)} placeholder="Optional Order Instructions"/> 
             <br></br>
-            <br></br>
+            <br></br> */}
             <button type="button" onClick={() => deleteUserOrder(item.id)}>Delete Order</button>    
 
             <hr />

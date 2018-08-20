@@ -21,6 +21,8 @@ class AccountContainer extends Component {
 
     this.state = {
       order: [],
+      comments: [],
+      comment: '',
     }
     this.updateUserOrder = this.updateUserOrder.bind(this); 
     this.deleteUserOrder = this.deleteUserOrder.bind(this);
@@ -62,6 +64,34 @@ class AccountContainer extends Component {
     })
   };
 
+  addComment = (comment, product_id) => {
+    axios.post(`api/comment/`, { comment: comment, product_id: product_id }).then(res => {
+      this.setState({
+        comments: res.data.data,
+      })
+      const test = document.getElementById("comment");
+      console.log(test, 'test');
+    })
+  }
+
+  updateComment = (comment, comment_id, product_id) => {
+    console.log('product_id', product_id);
+    axios.put(`/api/comment/${comment_id}`, { comment, comment_id, product_id }).then(res => {
+      this.setState({
+        comments: res.data,
+      })
+      console.log(this.state.comments, 'this.state.comments')
+    })
+  }
+
+  deleteComment = () => {
+    axios.delete('/api/comment').then(res => {
+      this.setState({
+        comments: res.data
+      })
+    })
+  }
+  
   handleChange = (e) => {
     const { value } = e.target
     this.setState({
@@ -85,6 +115,11 @@ class AccountContainer extends Component {
         updateUserOrder={this.updateUserOrder} 
         deleteUserOrder={this.deleteUserOrder}
         handleChange={this.handleChange}
+        updateComment={this.updateComment}
+        deleteComment={this.deleteComment}
+        addComment={this.addComment}
+        comment={this.comment}
+        comments={this.comments}
       />
     </Fragment>
      );
